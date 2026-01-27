@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bbusk2lp6klks"]
+
+[ext_resource type="PackedScene" uid="uid://caq5ekyd46sx5" path="res://player.tscn" id="1_4qc02"]
+[ext_resource type="Texture2D" uid="uid://xt8e8itc0mcl" path="res://skadoosh of the rebellion.JPG" id="1_4wuf8"]
+
+[node name="Node2D" type="Node2D" unique_id=2109256825]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=819230732]
+position = Vector2(572.5, 325.5)
+scale = Vector2(1, 1.1219999)
+texture = ExtResource("1_4wuf8")
+
+[node name="CharacterBody2D" parent="." unique_id=1986029567 instance=ExtResource("1_4qc02")]
+position = Vector2(352, 230)
