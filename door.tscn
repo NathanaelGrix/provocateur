@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://e35jyfy5dwlm"]
+
+[ext_resource type="Script" uid="uid://p0hdull5e6mi" path="res://door.gd" id="1_ejk4w"]
+[ext_resource type="Texture2D" uid="uid://crig0sihdn6el" path="res://Art/Door/Door Animation Basic 1.png" id="2_vqe75"]
+[ext_resource type="Texture2D" uid="uid://d0yuftjxvnjri" path="res://Art/Door/Door Animation Basic 2.png" id="3_6nm82"]
+[ext_resource type="Texture2D" uid="uid://c7ix8ywowcxn0" path="res://Art/Door/Door Animation Basic 3.png" id="4_nvkv3"]
+[ext_resource type="Texture2D" uid="uid://b771kwhncf85h" path="res://Art/Door/Door Animation Basic 4.png" id="5_5esjk"]
+[ext_resource type="Texture2D" uid="uid://dy71hn57o5b1m" path="res://Art/Door/Door Animation Basic 5.png" id="6_h7fda"]
+[ext_resource type="Texture2D" uid="uid://8lfhklggtxyt" path="res://Art/Door/Door Animation Basic 6.png" id="7_cu17k"]
+[ext_resource type="Texture2D" uid="uid://cwqr4m7oan0o0" path="res://Art/Door/Door Animation Basic 7.png" id="8_t10hw"]
+[ext_resource type="Texture2D" uid="uid://drvpg8x8tsjwn" path="res://Art/Door/Door Animation Basic 8.png" id="9_urtda"]
+[ext_resource type="Texture2D" uid="uid://hyve3hcipfwi" path="res://Art/Door/Door Animation Basic 9.png" id="10_l5plo"]
+[ext_resource type="Texture2D" uid="uid://dp7caib0f6kft" path="res://Art/Door/Door Animation Basic 10.png" id="11_hwcea"]
+[ext_resource type="Texture2D" uid="uid://drgqpag80jdy7" path="res://Art/Door/Door Closed Basic 1.png" id="12_ll3j0"]
+[ext_resource type="Texture2D" uid="uid://dimpwk62fpgx0" path="res://Art/Door/Door Open Basic 1.png" id="13_ylx8e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aljf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vqe75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6nm82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nvkv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5esjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_h7fda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cu17k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t10hw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_urtda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l5plo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hwcea")
+}],
+"loop": false,
+"name": &"door animation",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ll3j0")
+}],
+"loop": true,
+"name": &"door closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_ylx8e")
+}],
+"loop": true,
+"name": &"door open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sep0j"]
+size = Vector2(512, 619)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aava"]
+size = Vector2(513, 63)
+
+[node name="Door" type="Node2D" unique_id=2048279667]
+script = ExtResource("1_ejk4w")
+
+[node name="AutoCloseDoorTimer" type="Timer" parent="." unique_id=442840665]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1600251746]
+scale = Vector2(2, 1)
+sprite_frames = SubResource("SpriteFrames_aljf4")
+animation = &"door animation"
+
+[node name="PlayerNear" type="Area2D" parent="." unique_id=106340579]
+position = Vector2(0, -0.5)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNear" unique_id=1373140237]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_sep0j")
+debug_color = Color(0.9104701, 0.19811219, 0.5588026, 0.41960785)
+
+[node name="Blocker" type="StaticBody2D" parent="." unique_id=588038533]
+collision_layer = 2
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker" unique_id=1779164118]
+position = Vector2(-2.5, -0.5)
+shape = SubResource("RectangleShape2D_5aava")
+
+[connection signal="timeout" from="AutoCloseDoorTimer" to="." method="_on_auto_close_door_timer_timeout"]
+[connection signal="body_entered" from="PlayerNear" to="." method="_on_player_near_body_entered"]
+[connection signal="body_exited" from="PlayerNear" to="." method="_on_player_near_body_exited"]
