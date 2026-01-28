@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://caq5ekyd46sx5"]
+[gd_scene format=3 uid="uid://caq5ekyd46sx5"]
 
 [ext_resource type="Script" uid="uid://dsq1tik2826ap" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://cjdppsljhrbcf" path="res://Art/Player/Player Attack/Player Attack1.png" id="2_5tmop"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dp2weqwuim2qd" path="res://Art/Player/Player Move/Player Move4.png" id="18_khis8"]
 [ext_resource type="Texture2D" uid="uid://3rqg4a5fmjg0" path="res://Art/Player/Player Move/Player Move5.png" id="19_b88wv"]
 [ext_resource type="Texture2D" uid="uid://m3btxrn257q2" path="res://Art/Player/Player Move/Player Move6.png" id="20_pgbbb"]
+[ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="21_5tmop"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_331ug"]
 animations = [{
@@ -99,24 +100,28 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 88.45903
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=841059074]
 script = ExtResource("1_4flbx")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1262614447]
 position = Vector2(-1, -2)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_331ug")
 animation = &"attack"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1950049712]
 position = Vector2(-5, -6)
 scale = Vector2(1.115, 1.115)
 shape = SubResource("CircleShape2D_i3pqv")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=916150173]
 zoom = Vector2(0.5, 0.5)
 
-[node name="AttackRechargeTimer" type="Timer" parent="."]
+[node name="AttackRechargeTimer" type="Timer" parent="." unique_id=743408100]
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=1341191055]
+script = ExtResource("21_5tmop")
+metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]
