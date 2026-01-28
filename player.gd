@@ -1,7 +1,7 @@
 extends CharacterBody2D
 const SPEED:float = 50000
 
-enum PlayerState {IDLE, MOVE, ATTACK}
+enum PlayerState {IDLE, MOVE}
 
 var state: PlayerState = PlayerState.IDLE
 
@@ -11,16 +11,13 @@ func change_state(new_state: PlayerState) -> void:
 		
 	state = new_state
 	
-	match state:
-		PlayerState.IDLE:
-			velocity = Vector2.ZERO
-			$AnimatedSprite2D.play("idle")
-			
-		PlayerState.MOVE:
-			$AnimatedSprite2D.play("move")
-			
-		PlayerState.ATTACK:
-			$AnimatedSprite2D.play("attack")
+	if !is_attacking:
+		match state:
+			PlayerState.IDLE:
+				$AnimatedSprite2D.play("idle")
+				
+			PlayerState.MOVE:
+				$AnimatedSprite2D.play("move")
 
 @export var attack_cooldown := 0.5
 
@@ -33,58 +30,40 @@ func _ready() -> void:
 	pass
 	
 func _process(delta: float) -> void:
-	#var direction: Vector2 = Input.get_vector("left", "right","up","down").normalized()
-	
-	#if direction == Vector2.ZERO:
-		#$AnimatedSprite2D.animation = "idle"
-		#velocity = velocity.lerp(Vector2.ZERO,.2)
-	#else:
-		#$AnimatedSprite2D.animation = "move"
-		#velocity = direction * SPEED * delta
-		#velocity.x = clamp(velocity.x,-SPEED,SPEED)
-		#velocity.y = clamp(velocity.y,-SPEED,SPEED)"
+	var direction = Input.get_vector("left", "right", "up", "down")
+	if direction == Vector2.ZERO:
+		change_state(PlayerState.IDLE)
+	else:
+		change_state(PlayerState.MOVE)
+		
+	if Input.is_action_just_pressed("attack"):
+		start_attack()
 		
 	match state:
 		PlayerState.IDLE:
-			handle_idle(delta)
+			handle_idle()
 		PlayerState.MOVE:
-			handle_move(delta)
-		PlayerState.ATTACK:
-			handle_attack(delta)
+			handle_move(direction, delta)
 			
 	move_and_slide()
 	
 
-func handle_idle(delta: float) -> void:
-	var direction = Input.get_vector("left", "right", "up", "down")
-
-	if direction != Vector2.ZERO:
-		change_state(PlayerState.MOVE)
-
-	if Input.is_action_just_pressed("attack") and attack_ready:
-		start_attack()
+func handle_idle() -> void:
+	velocity = velocity.lerp(Vector2.ZERO, 0.2)
 	
-func handle_move(delta: float) -> void:
-	var direction = Input.get_vector("left", "right", "up", "down")
-
-	if direction == Vector2.ZERO:
-		change_state(PlayerState.IDLE)
-		velocity = velocity.lerp(Vector2.ZERO, 0.2)
-	else:
-		velocity = direction.normalized() * SPEED * delta
-
-	if Input.is_action_just_pressed("attack") and attack_ready:
-		start_attack()
-
-func handle_attack(delta: float) -> void:
+func handle_move(direction: Vector2, delta: float) -> void:
+	velocity = direction.normalized() * SPEED * delta
+	
+func handle_attack() -> void:
 	pass
 
 
 func start_attack():
-	is_attacking = true
-	attack_ready = false
-	change_state(PlayerState.ATTACK)
-	$AttackRechargeTimer.start()
+	if attack_ready:
+		is_attacking = true
+		attack_ready = false
+		$AnimatedSprite2D.play("attack")
+		$AttackRechargeTimer.start()
 	
 
 func _on_attack_recharge_timer_timeout():
@@ -92,5 +71,10 @@ func _on_attack_recharge_timer_timeout():
 
 
 func _on_animated_sprite_2d_animation_finished():
-	if state == PlayerState.ATTACK:
-		change_state(PlayerState.IDLE)
+	if $AnimatedSprite2D.animation == "attack":
+		is_attacking = false
+		if velocity != Vector2.ZERO:
+			$AnimatedSprite2D.play("move")
+		else:
+			$AnimatedSprite2D.play("idle")
+		$AnimatedSprite2D.play()
