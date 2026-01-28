@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://fihmqoax1l8y"]
+
+[ext_resource type="Texture2D" uid="uid://caqs2cx8608hh" path="res://Art/Wall Tile Basic 1.png" id="1_xxgf6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4f30"]
+size = Vector2(64, 64)
+
+[node name="Wall" type="StaticBody2D" unique_id=193500376]
+collision_layer = 2
+collision_mask = 13
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1147353374]
+texture = ExtResource("1_xxgf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1348657393]
+visible = false
+shape = SubResource("RectangleShape2D_y4f30")

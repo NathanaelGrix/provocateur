@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://caq5ekyd46sx5"]
+[gd_scene format=3 uid="uid://caq5ekyd46sx5"]
 
 [ext_resource type="Script" uid="uid://dsq1tik2826ap" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://cjdppsljhrbcf" path="res://Art/Player/Player Attack/Player Attack1.png" id="2_5tmop"]
@@ -99,24 +99,25 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 88.45903
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" unique_id=14595193 groups=["player"]]
+collision_mask = 14
 script = ExtResource("1_4flbx")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009284766]
 position = Vector2(-1, -2)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_331ug")
 animation = &"attack"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1828939638]
 position = Vector2(-5, -6)
 scale = Vector2(1.115, 1.115)
 shape = SubResource("CircleShape2D_i3pqv")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=501515431]
 zoom = Vector2(0.5, 0.5)
 
-[node name="AttackRechargeTimer" type="Timer" parent="."]
+[node name="AttackRechargeTimer" type="Timer" parent="." unique_id=1864705022]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]
