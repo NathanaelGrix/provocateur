@@ -1,19 +1,31 @@
 extends Node2D
 
+@export var is_locked := true
+@export var starts_unlocked := false
+
 var is_open := false
 var player_near := false
+var door_has_been_used := false
 
-@onready var blocker = $Blocker/CollisionShape2D
+@onready var blocker := get_node_or_null("Blocker/CollisionShape2D")
+@onready var next_door_ind = $NextDoorIndicator
+@onready var auto_close_timer = $AutoCloseDoorTimer
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
+	if next_door_ind:
+		next_door_ind.visible = false
+	
 	close_door()
-
-
+	
+	if starts_unlocked:
+		unlock()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if player_near == true and Input.is_action_just_pressed("interact"):
-		toggle_door()
+		if not is_locked:
+			toggle_door()
 
 func toggle_door():
 	if is_open:
@@ -23,28 +35,50 @@ func toggle_door():
 		
 func open_door():
 	is_open = true
-	blocker.disabled = true
+	if blocker:
+		blocker.disabled = true
 	$AnimatedSprite2D.play("door animation")
 	
-	$AutoCloseDoorTimer.stop()
-	$AutoCloseDoorTimer.start()
+	auto_close_timer.stop()
+	auto_close_timer.start()
 	
 func close_door():
 	is_open = false
-	
-	blocker.disabled = false
+	if blocker:
+		blocker.disabled = false
 	$AnimatedSprite2D.play_backwards("door animation")
+	
+func unlock(show_indicator := true):
+	is_locked = false
+	if show_indicator:
+		show_next_door_ind()
+	
+func lock():
+	is_locked = true
+	hide_next_door_ind()
+	
+func show_next_door_ind():
+	if next_door_ind and not door_has_been_used:
+		next_door_ind.visible = true
+	
+func hide_next_door_ind():
+	if next_door_ind:
+		next_door_ind.visible = false
 	
 
 func _on_player_near_body_entered(body):
 	if body.is_in_group("player"):
 		player_near = true
-
+		
+		hide_next_door_ind()
 
 func _on_player_near_body_exited(body):
 	if body.is_in_group("player"):
 		player_near = false
-
+		
+		if is_open and not door_has_been_used:
+			door_has_been_used = true
+			hide_next_door_ind()
 
 
 func _on_auto_close_door_timer_timeout():

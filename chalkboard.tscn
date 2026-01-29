@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://elwf4meemdkb"]
+
+[ext_resource type="Texture2D" uid="uid://dbdw7a36vhv86" path="res://Art/Chalkboard.png" id="1_4wkjn"]
+
+[sub_resource type="Theme" id="Theme_jsiet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv1mk"]
+size = Vector2(640.5, 367.5)
+
+[node name="Chalkboard" type="StaticBody2D" unique_id=997523242]
+collision_layer = 2
+collision_mask = 13
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=455387639]
+texture = ExtResource("1_4wkjn")
+
+[node name="Label" type="Label" parent="." unique_id=965330136]
+offset_left = -255.0
+offset_top = -251.0
+offset_right = 260.0
+offset_bottom = -25.0
+theme = SubResource("Theme_jsiet")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 35
+text = "Time to piss off the guests!
+wasd = move
+space = Taser / agitate 
+E = interact"
+uppercase = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=260990806]
+visible = false
+position = Vector2(-0.25, -133.75)
+shape = SubResource("RectangleShape2D_lv1mk")
+debug_color = Color(0.64303553, 0.52190685, 0.117512204, 0.41960785)

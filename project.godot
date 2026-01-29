@@ -19,6 +19,17 @@ run/main_scene="res://test_map.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+<<<<<<< Updated upstream
+=======
+[autoload]
+
+SignalBus="*uid://gdd2lepitd5t"
+
+[display]
+
+window/stretch/mode="viewport"
+
+>>>>>>> Stashed changes
 [input]
 
 left={

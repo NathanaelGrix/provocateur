@@ -13,6 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://dp7caib0f6kft" path="res://Art/Door/Door Animation Basic 10.png" id="11_hwcea"]
 [ext_resource type="Texture2D" uid="uid://drgqpag80jdy7" path="res://Art/Door/Door Closed Basic 1.png" id="12_ll3j0"]
 [ext_resource type="Texture2D" uid="uid://dimpwk62fpgx0" path="res://Art/Door/Door Open Basic 1.png" id="13_ylx8e"]
+[ext_resource type="Texture2D" uid="uid://b2tprg7hti1df" path="res://Art/Arrow/Red Arrow Animation1.png" id="14_t10hw"]
+[ext_resource type="Texture2D" uid="uid://c3qdiqs73ndwi" path="res://Art/Arrow/Red Arrow Animation2.png" id="15_urtda"]
+[ext_resource type="Texture2D" uid="uid://dpfh4ha813jcr" path="res://Art/Arrow/Red Arrow Animation3.png" id="16_l5plo"]
+[ext_resource type="Texture2D" uid="uid://cv4ax5631rd8r" path="res://Art/Arrow/Red Arrow Animation4.png" id="17_hwcea"]
+[ext_resource type="Texture2D" uid="uid://buqvgqrwfl544" path="res://Art/Arrow/Red Arrow Animation5.png" id="18_ll3j0"]
+[ext_resource type="Texture2D" uid="uid://cb05gd8rl81ib" path="res://Art/Arrow/Red Arrow Animation6.png" id="19_ylx8e"]
+[ext_resource type="Texture2D" uid="uid://nedir2shm3r5" path="res://Art/Arrow/Red Arrow Animation7.png" id="20_sep0j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aljf4"]
 animations = [{
@@ -68,41 +75,79 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sep0j"]
-size = Vector2(512, 619)
+[sub_resource type="SpriteFrames" id="SpriteFrames_5aava"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_t10hw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_urtda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_l5plo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hwcea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ll3j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ylx8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_sep0j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5aava"]
 size = Vector2(513, 63)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sep0j"]
+size = Vector2(512, 619)
+
 [node name="Door" type="Node2D" unique_id=2048279667]
 script = ExtResource("1_ejk4w")
-
-[node name="AutoCloseDoorTimer" type="Timer" parent="." unique_id=442840665]
-wait_time = 3.0
-one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1600251746]
 scale = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_aljf4")
 animation = &"door animation"
 
-[node name="PlayerNear" type="Area2D" parent="." unique_id=106340579]
-position = Vector2(0, -0.5)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNear" unique_id=1373140237]
-position = Vector2(-2, -1)
-shape = SubResource("RectangleShape2D_sep0j")
-debug_color = Color(0.9104701, 0.19811219, 0.5588026, 0.41960785)
+[node name="NextDoorIndicator" type="AnimatedSprite2D" parent="." unique_id=1352390588]
+position = Vector2(-18.999998, 75)
+rotation = 1.3439035
+scale = Vector2(3.229167, 3.34375)
+sprite_frames = SubResource("SpriteFrames_5aava")
+centered = false
 
 [node name="Blocker" type="StaticBody2D" parent="." unique_id=588038533]
 collision_layer = 2
 collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker" unique_id=1779164118]
+visible = false
 position = Vector2(-2.5, -0.5)
 shape = SubResource("RectangleShape2D_5aava")
 
-[connection signal="timeout" from="AutoCloseDoorTimer" to="." method="_on_auto_close_door_timer_timeout"]
+[node name="PlayerNear" type="Area2D" parent="." unique_id=106340579]
+position = Vector2(0, -0.5)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNear" unique_id=1373140237]
+visible = false
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_sep0j")
+debug_color = Color(0.9104701, 0.19811219, 0.5588026, 0.41960785)
+
+[node name="AutoCloseDoorTimer" type="Timer" parent="." unique_id=442840665]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="PlayerNear" to="." method="_on_player_near_body_entered"]
 [connection signal="body_exited" from="PlayerNear" to="." method="_on_player_near_body_exited"]
+[connection signal="timeout" from="AutoCloseDoorTimer" to="." method="_on_auto_close_door_timer_timeout"]
