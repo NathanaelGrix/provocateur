@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://25ig2b7q8b4b"]
+
+[ext_resource type="Script" uid="uid://dif0hjlkie2bj" path="res://node.gd" id="1_e8l2v"]
+
+[node name="RoomController" type="Node" unique_id=198522026]
+script = ExtResource("1_e8l2v")
+doors = Array[NodePath]([NodePath("")])

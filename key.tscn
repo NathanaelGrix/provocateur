@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://ekby4tnm12xd"]
+
+[ext_resource type="Script" uid="uid://c8uwonrgrifh8" path="res://area_2d.gd" id="1_jo2lc"]
+[ext_resource type="Texture2D" uid="uid://ckgkvy740myl7" path="res://Art/Key Card/Key Card1.png" id="2_cr1a6"]
+[ext_resource type="Texture2D" uid="uid://cv07xnsywh846" path="res://Art/Key Card/Key Card2.png" id="3_alhm2"]
+[ext_resource type="Texture2D" uid="uid://bjerwj33s4vu0" path="res://Art/Key Card/Key Card3.png" id="4_thsxu"]
+[ext_resource type="Texture2D" uid="uid://uiaq6uv5p7nr" path="res://Art/Key Card/Key Card4.png" id="5_h2804"]
+[ext_resource type="Texture2D" uid="uid://7v0fs2gkxm7t" path="res://Art/Key Card/Key Card5.png" id="6_rxcsg"]
+[ext_resource type="Texture2D" uid="uid://cii50fdobgstf" path="res://Art/Key Card/Key Card6.png" id="7_p66kx"]
+[ext_resource type="Texture2D" uid="uid://cqpay4lt3w6sw" path="res://Art/Key Card/Key Card7.png" id="8_4hxpy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdlab"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cr1a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_alhm2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_thsxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h2804")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rxcsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_p66kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4hxpy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrotk"]
+radius = 54.63769
+
+[node name="Key" type="Area2D" unique_id=1197041074]
+script = ExtResource("1_jo2lc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1094666088]
+position = Vector2(19.5, 18)
+scale = Vector2(1.40625, 1.375)
+sprite_frames = SubResource("SpriteFrames_kdlab")
+frame_progress = 0.30611616
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1747156777]
+position = Vector2(19.5, 18)
+scale = Vector2(1.40625, 1.375)
+shape = SubResource("CircleShape2D_lrotk")
+debug_color = Color(0.5422072, 0.5661437, 0.08163541, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
