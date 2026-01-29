@@ -45,7 +45,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -71,7 +71,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -94,20 +94,21 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 88.45903
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=841059074]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=841059074 groups=["player"]]
+collision_mask = 14
 script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009284766]
 position = Vector2(-1, -2)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_331ug")
-animation = &"attack"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1950049712]
 position = Vector2(-5, -6)
