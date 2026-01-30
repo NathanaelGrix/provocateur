@@ -45,7 +45,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -101,7 +101,7 @@ animations = [{
 radius = 88.45903
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=841059074 groups=["player"]]
-collision_mask = 14
+collision_mask = 3
 script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009284766]
@@ -116,7 +116,7 @@ scale = Vector2(1.115, 1.115)
 shape = SubResource("CircleShape2D_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=916150173]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.25, 0.25)
 
 [node name="AttackRechargeTimer" type="Timer" parent="." unique_id=743408100]
 

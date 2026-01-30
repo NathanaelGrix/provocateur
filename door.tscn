@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://e35jyfy5dwlm"]
+[gd_scene format=3 uid="uid://dkjdw5c8j4fr7"]
 
 [ext_resource type="Script" uid="uid://p0hdull5e6mi" path="res://door.gd" id="1_ejk4w"]
 [ext_resource type="Texture2D" uid="uid://crig0sihdn6el" path="res://Art/Door/Door Animation Basic 1.png" id="2_vqe75"]
