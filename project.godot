@@ -23,6 +23,10 @@ config/icon="res://icon.svg"
 
 SignalBus="*uid://gdd2lepitd5t"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 left={
