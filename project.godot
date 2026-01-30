@@ -27,6 +27,10 @@ SignalBus="*uid://gdd2lepitd5t"
 
 player=""
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 left={

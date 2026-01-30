@@ -9,6 +9,8 @@ func _ready() -> void:
 	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1, false)
 	
 func _process(delta: float) -> void:
+	if is_equal_approx(next_position.x, position.x) and is_equal_approx(next_position.y, position.y):
+		return
 	velocity = (next_position-position).normalized() * SPEED * delta
 	move_and_slide()
 
