@@ -32,6 +32,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 player=""
+navigation_polygon_source_geometry_group=""
 
 [input]
 
