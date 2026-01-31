@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 const SPEED:float = 50000
 
 enum PlayerState {IDLE, MOVE}
@@ -11,6 +11,7 @@ var foot_step_frames : Array = [2]
 var state: PlayerState = PlayerState.IDLE
 
 func change_state(new_state: PlayerState) -> void:
+	#print("new_state: ", new_state)
 	if state == new_state:
 		return
 		
@@ -67,6 +68,9 @@ func start_attack():
 	if attack_ready:
 		is_attacking = true
 		attack_ready = false
+		print("attacking")
+		$weapon/AnimatedSprite2D.visible = true
+		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = false
 		load_sfx(sfx_player_attack)
 		$player_sfxs.play()
 		$AnimatedSprite2D.play("attack")
@@ -79,7 +83,10 @@ func _on_attack_recharge_timer_timeout():
 
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "attack":
+		print("Done Attacking")
 		is_attacking = false
+		$weapon/AnimatedSprite2D.visible = false
+		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = true
 		if velocity != Vector2.ZERO:
 			$AnimatedSprite2D.play("move")
 		else:
