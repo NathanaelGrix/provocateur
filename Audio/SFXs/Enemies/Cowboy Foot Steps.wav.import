@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://danqq7oa3dy32"
+path="res://.godot/imported/Cowboy Foot Steps.wav-32edb77dc410cb4b504aa7a888ab7724.sample"
+
+[deps]
+
+source_file="res://Audio/SFXs/Enemies/Cowboy Foot Steps.wav"
+dest_files=["res://.godot/imported/Cowboy Foot Steps.wav-32edb77dc410cb4b504aa7a888ab7724.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

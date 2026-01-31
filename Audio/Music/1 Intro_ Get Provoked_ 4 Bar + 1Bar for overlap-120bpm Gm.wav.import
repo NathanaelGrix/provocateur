@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://y3j8lajthu8r"
+path="res://.godot/imported/1 Intro_ Get Provoked_ 4 Bar + 1Bar for overlap-120bpm Gm.wav-6f6dad8e5826d4d18b555ce84ab5c1f2.sample"
+
+[deps]
+
+source_file="res://Audio/Music/1 Intro_ Get Provoked_ 4 Bar + 1Bar for overlap-120bpm Gm.wav"
+dest_files=["res://.godot/imported/1 Intro_ Get Provoked_ 4 Bar + 1Bar for overlap-120bpm Gm.wav-6f6dad8e5826d4d18b555ce84ab5c1f2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
