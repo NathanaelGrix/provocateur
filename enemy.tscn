@@ -3,10 +3,15 @@
 [ext_resource type="Script" uid="uid://batne5be13mlj" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="2_qi2p4"]
 [ext_resource type="Texture2D" uid="uid://duxrfjy7dsxif" path="res://Art/Enemy/igmbji9ii8c1j5tn9dgqmu31dt.png" id="3_qi2p4"]
+[ext_resource type="Script" uid="uid://bs0srdqadorqt" path="res://hurtArea2D.gd" id="4_epg4t"]
+[ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="4_iifgy"]
 
 [sub_resource type="Resource" id="Resource_iifgy"]
 script = ExtResource("2_qi2p4")
 metadata/_custom_type_script = "uid://d2itsf05pdx37"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
+radius = 284.62
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
 radius = 67.0
@@ -19,6 +24,16 @@ enemy_details = SubResource("Resource_iifgy")
 scale = Vector2(0.23, 0.23)
 texture = ExtResource("3_qi2p4")
 
+[node name="HurtArea2D" type="Area2D" parent="Sprite2D" unique_id=1774631892]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_epg4t")
+metadata/_custom_type_script = "uid://bs0srdqadorqt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HurtArea2D" unique_id=2005937615]
+shape = SubResource("CircleShape2D_3yqyl")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452155158]
 position = Vector2(-2, -3)
 shape = SubResource("CircleShape2D_qi2p4")
@@ -29,5 +44,9 @@ unique_name_in_owner = true
 [node name="Timer" type="Timer" parent="." unique_id=101250029]
 wait_time = 5.0
 autostart = true
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=1819383763]
+script = ExtResource("4_iifgy")
+metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
