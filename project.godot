@@ -22,14 +22,16 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*uid://gdd2lepitd5t"
-
-[global_group]
-
-player=""
+IdGenerator="*uid://cnutrin2sl1eg"
+Visibility="*uid://brgmurowt3pmm"
 
 [display]
 
 window/stretch/mode="viewport"
+
+[global_group]
+
+player=""
 
 [input]
 
