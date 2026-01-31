@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ceraua5qlnafg"
+path="res://.godot/imported/Player Provoke.wav-065cd0852b163d1ef49e2191f8fb6cbd.sample"
+
+[deps]
+
+source_file="res://Audio/SFXs/Player/Player Provoke.wav"
+dest_files=["res://.godot/imported/Player Provoke.wav-065cd0852b163d1ef49e2191f8fb6cbd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

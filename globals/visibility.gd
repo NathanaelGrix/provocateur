@@ -2,7 +2,7 @@ extends Node
 
 
 ## Every this many frames the visibility should be updated
-const UPDATE_FREQENCY: int = 3
+const UPDATE_FREQENCY: int = 5
 
 const IS_VISIBLE: String = "is"
 const NOT_VISIBLE: String = "not"
@@ -68,14 +68,13 @@ func process_id_arr(id_arr: Array) -> void:
 	detector.target_position = detector.to_local(second_component.global_position)
 	detector.force_raycast_update()
 	var was_previously_visible = is_visible_mapping[first_id][IS_VISIBLE].has(second_id)
+	# Only modify the state if actually necessary
 	if detector.is_colliding() and was_previously_visible:
-		print("NO LONGER in view!")
 		is_visible_mapping[first_id][NOT_VISIBLE][second_id] = true
 		is_visible_mapping[second_id][NOT_VISIBLE][first_id] = true
 		is_visible_mapping[first_id][IS_VISIBLE].erase(second_id)
 		is_visible_mapping[second_id][IS_VISIBLE].erase(first_id)
 	elif not detector.is_colliding() and not was_previously_visible:
-		print("came into view!")
 		is_visible_mapping[first_id][IS_VISIBLE][second_id] = true
 		is_visible_mapping[second_id][IS_VISIBLE][first_id] = true
 		is_visible_mapping[first_id][NOT_VISIBLE].erase(second_id)
@@ -93,5 +92,11 @@ func register_visibility_component(new_component: VisibilityComponent) -> void:
 	visible_components[new_component.visibility_id] = new_component
 
 
-func is_line_of_sight_between(first_id: int, second_id: int) -> bool:
+func is_line_of_sight_between(first_entity: Entity, second_entity: Entity) -> bool:
+	var first_id = first_entity.visibility_component.visibility_id
+	var second_id = second_entity.visibility_component.visibility_id
 	return is_visible_mapping[first_id][IS_VISIBLE].has(second_id)
+
+
+func get_all_entities_visible_to(entity: Entity) -> Array:
+	return is_visible_mapping[entity.visibility_component.visibility_id][IS_VISIBLE].keys()
