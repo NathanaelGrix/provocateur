@@ -3,6 +3,11 @@ const SPEED:float = 50000
 
 enum PlayerState {IDLE, MOVE}
 
+@export var sfx_player_footstep : AudioStream
+@export var sfx_player_attack : AudioStream
+
+var foot_step_frames : Array = [2]
+
 var state: PlayerState = PlayerState.IDLE
 
 func change_state(new_state: PlayerState) -> void:
@@ -62,6 +67,8 @@ func start_attack():
 	if attack_ready:
 		is_attacking = true
 		attack_ready = false
+		load_sfx(sfx_player_attack)
+		$player_sfxs.play()
 		$AnimatedSprite2D.play("attack")
 		$AttackRechargeTimer.start()
 	
@@ -78,3 +85,15 @@ func _on_animated_sprite_2d_animation_finished():
 		else:
 			$AnimatedSprite2D.play("idle")
 		$AnimatedSprite2D.play()
+
+func load_sfx(sfx_to_load):
+	if $player_sfxs.stream != sfx_to_load:
+		$player_sfxs.stop()
+		$player_sfxs.stream = sfx_to_load
+
+
+func _on_animated_sprite_2d_frame_changed():
+	if $AnimatedSprite2D.animation == "idle": return
+	if $AnimatedSprite2D.animation == "attack": return
+	load_sfx(sfx_player_footstep)
+	if $AnimatedSprite2D.frame in foot_step_frames: $player_sfxs.play()
