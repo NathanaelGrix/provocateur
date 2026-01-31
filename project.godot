@@ -23,13 +23,13 @@ config/icon="res://icon.svg"
 
 SignalBus="*uid://gdd2lepitd5t"
 
-[global_group]
-
-player=""
-
 [display]
 
 window/stretch/mode="viewport"
+
+[global_group]
+
+player=""
 
 [input]
 
