@@ -62,6 +62,9 @@ func start_attack():
 	if attack_ready:
 		is_attacking = true
 		attack_ready = false
+		#$weapon/AnimationPlayer.play("attack")
+		$weapon/AnimatedSprite2D.visible = true
+		$weapon/AnimatedSprite2D/HitArea2D/CollisionShape2D.disabled = false
 		$AnimatedSprite2D.play("attack")
 		$AttackRechargeTimer.start()
 	
@@ -73,6 +76,8 @@ func _on_attack_recharge_timer_timeout():
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "attack":
 		is_attacking = false
+		$weapon/AnimatedSprite2D.visible = false
+		$weapon/AnimatedSprite2D/HitArea2D/CollisionShape2D.disabled = true
 		if velocity != Vector2.ZERO:
 			$AnimatedSprite2D.play("move")
 		else:

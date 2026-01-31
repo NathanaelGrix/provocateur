@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://3rqg4a5fmjg0" path="res://Art/Player/Player Move/Player Move5.png" id="19_b88wv"]
 [ext_resource type="Texture2D" uid="uid://m3btxrn257q2" path="res://Art/Player/Player Move/Player Move6.png" id="20_pgbbb"]
 [ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="21_5tmop"]
+[ext_resource type="PackedScene" uid="uid://dawcnkae0m2rf" path="res://weapon.tscn" id="22_7ahtn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_331ug"]
 animations = [{
@@ -123,6 +124,9 @@ zoom = Vector2(0.25, 0.25)
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1341191055]
 script = ExtResource("21_5tmop")
 metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
+
+[node name="weapon" parent="." unique_id=505119164 instance=ExtResource("22_7ahtn")]
+position = Vector2(141, 0)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]
