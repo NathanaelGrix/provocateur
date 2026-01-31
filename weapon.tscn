@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dawcnkae0m2rf"]
 
+[ext_resource type="Script" uid="uid://bxibix3hxr4q8" path="res://weapon.gd" id="1_8xwfw"]
 [ext_resource type="Texture2D" uid="uid://c5tf4p3xyo5v3" path="res://Art/weapons/redBox.png" id="1_swcir"]
 [ext_resource type="Script" uid="uid://bd883yoa1ayxt" path="res://hitArea2D.gd" id="2_o2wld"]
 
@@ -22,7 +23,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/HitArea2D/CollisionShape2D:disabled")
+tracks/0/path = NodePath("AnimatedSprite2D/HitArea2D/HitBox:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -49,7 +50,7 @@ resource_name = "attack"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/HitArea2D/CollisionShape2D:disabled")
+tracks/0/path = NodePath("AnimatedSprite2D/HitArea2D/HitBox:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -78,6 +79,7 @@ _data = {
 }
 
 [node name="weapon" type="Node2D" unique_id=505119164]
+script = ExtResource("1_8xwfw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=392904773]
 visible = false
@@ -91,7 +93,7 @@ monitorable = false
 script = ExtResource("2_o2wld")
 metadata/_custom_type_script = "uid://bd883yoa1ayxt"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitArea2D" unique_id=726334482]
+[node name="HitBox" type="CollisionShape2D" parent="AnimatedSprite2D/HitArea2D" unique_id=726334482]
 position = Vector2(-0.06666718, -0.03333359)
 shape = SubResource("RectangleShape2D_8xwfw")
 disabled = true

@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://dd8jhyx75jild"]
 
 [ext_resource type="Script" uid="uid://batne5be13mlj" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="2_qi2p4"]
-[ext_resource type="Script" uid="uid://bs0srdqadorqt" path="res://hurtArea2D.gd" id="4_epg4t"]
-[ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="4_iifgy"]
 [ext_resource type="Texture2D" uid="uid://denk3hsutvrk3" path="res://Art/Cowboy/idle/Cowboy Idle Animation1.png" id="3_doop2"]
 [ext_resource type="Texture2D" uid="uid://2fvnf1bkhlyo" path="res://Art/Cowboy/idle/Cowboy Idle Animation2.png" id="4_5hcft"]
+[ext_resource type="Script" uid="uid://bs0srdqadorqt" path="res://hurtArea2D.gd" id="4_epg4t"]
+[ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="4_iifgy"]
 [ext_resource type="Texture2D" uid="uid://cvh7nm4aga11r" path="res://Art/Cowboy/idle/Cowboy Idle Animation3.png" id="5_nnovl"]
 [ext_resource type="Texture2D" uid="uid://db2s4kdbc2wag" path="res://Art/Cowboy/idle/Cowboy Idle Animation4.png" id="6_jmwgi"]
 [ext_resource type="Texture2D" uid="uid://bdgsearbvl5na" path="res://Art/Cowboy/idle/Cowboy Idle Animation5.png" id="7_g2u8i"]
@@ -16,16 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ds2kry3imim0k" path="res://Art/Cowboy/walk/Cowboy Walk Animation4.png" id="12_kdav3"]
 [ext_resource type="Texture2D" uid="uid://b4iwi7d575n03" path="res://Art/Cowboy/walk/Cowboy Walk Animation5.png" id="13_jpbtr"]
 [ext_resource type="Texture2D" uid="uid://buny7cbkuvruh" path="res://Art/Cowboy/walk/Cowboy Walk Animation6.png" id="14_qgdfx"]
+[ext_resource type="Script" uid="uid://cdo28580vtf37" path="res://components/visibility_component.gd" id="16_nnovl"]
 
-[sub_resource type="Resource" id="Resource_iifgy"]
-script = ExtResource("2_qi2p4")
-metadata/_custom_type_script = "uid://d2itsf05pdx37"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
-radius = 284.62
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
-radius = 67.0
 [sub_resource type="SpriteFrames" id="SpriteFrames_qku5p"]
 animations = [{
 "frames": [{
@@ -75,15 +66,20 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
+radius = 114.15778
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l1fjw"]
 radius = 112.0
 height = 224.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=2086308516]
+[node name="Enemy" type="CharacterBody2D" unique_id=918026956 node_paths=PackedStringArray("visibility_component", "health_component")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_4gyqm")
-enemy_details = SubResource("Resource_iifgy")
+visibility_component = NodePath("VisibilityComponent")
+health_component = NodePath("HealthComponent")
+metadata/_custom_type_script = "uid://bsmjmjcwf80si"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485160209]
 scale = Vector2(4, 4)
@@ -92,14 +88,15 @@ animation = &"idle"
 frame = 3
 frame_progress = 0.4359787
 
-[node name="HurtArea2D" type="Area2D" parent="Sprite2D" unique_id=1774631892]
+[node name="HurtArea2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1774631892]
+scale = Vector2(0.25, 0.25)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("4_epg4t")
 metadata/_custom_type_script = "uid://bs0srdqadorqt"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HurtArea2D" unique_id=2005937615]
+[node name="HurtBox" type="CollisionShape2D" parent="AnimatedSprite2D/HurtArea2D" unique_id=2005937615]
 shape = SubResource("CircleShape2D_3yqyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452155158]
@@ -117,4 +114,6 @@ autostart = true
 script = ExtResource("4_iifgy")
 metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="VisibilityComponent" type="Node2D" parent="." unique_id=534113169]
+script = ExtResource("16_nnovl")
+metadata/_custom_type_script = "uid://cdo28580vtf37"
