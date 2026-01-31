@@ -22,6 +22,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*uid://gdd2lepitd5t"
+IdGenerator="*uid://cnutrin2sl1eg"
+Visibility="*uid://brgmurowt3pmm"
 
 [display]
 
