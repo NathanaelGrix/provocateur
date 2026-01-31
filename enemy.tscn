@@ -2,26 +2,92 @@
 
 [ext_resource type="Script" uid="uid://batne5be13mlj" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="2_qi2p4"]
-[ext_resource type="Texture2D" uid="uid://duxrfjy7dsxif" path="res://Art/Enemy/igmbji9ii8c1j5tn9dgqmu31dt.png" id="3_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://denk3hsutvrk3" path="res://Art/Cowboy/idle/Cowboy Idle Animation1.png" id="3_doop2"]
+[ext_resource type="Texture2D" uid="uid://2fvnf1bkhlyo" path="res://Art/Cowboy/idle/Cowboy Idle Animation2.png" id="4_5hcft"]
+[ext_resource type="Texture2D" uid="uid://cvh7nm4aga11r" path="res://Art/Cowboy/idle/Cowboy Idle Animation3.png" id="5_nnovl"]
+[ext_resource type="Texture2D" uid="uid://db2s4kdbc2wag" path="res://Art/Cowboy/idle/Cowboy Idle Animation4.png" id="6_jmwgi"]
+[ext_resource type="Texture2D" uid="uid://bdgsearbvl5na" path="res://Art/Cowboy/idle/Cowboy Idle Animation5.png" id="7_g2u8i"]
+[ext_resource type="Texture2D" uid="uid://dos53loimxagv" path="res://Art/Cowboy/idle/Cowboy Idle Animation6.png" id="8_otto8"]
+[ext_resource type="Texture2D" uid="uid://copyslqfuk1ti" path="res://Art/Cowboy/walk/Cowboy Walk Animation1.png" id="9_8q82m"]
+[ext_resource type="Texture2D" uid="uid://yerbh4qqcbel" path="res://Art/Cowboy/walk/Cowboy Walk Animation2.png" id="10_epc7x"]
+[ext_resource type="Texture2D" uid="uid://c5jc8x5di03h6" path="res://Art/Cowboy/walk/Cowboy Walk Animation3.png" id="11_o7rgc"]
+[ext_resource type="Texture2D" uid="uid://ds2kry3imim0k" path="res://Art/Cowboy/walk/Cowboy Walk Animation4.png" id="12_kdav3"]
+[ext_resource type="Texture2D" uid="uid://b4iwi7d575n03" path="res://Art/Cowboy/walk/Cowboy Walk Animation5.png" id="13_jpbtr"]
+[ext_resource type="Texture2D" uid="uid://buny7cbkuvruh" path="res://Art/Cowboy/walk/Cowboy Walk Animation6.png" id="14_qgdfx"]
 
 [sub_resource type="Resource" id="Resource_iifgy"]
 script = ExtResource("2_qi2p4")
 metadata/_custom_type_script = "uid://d2itsf05pdx37"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
-radius = 67.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_qku5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_doop2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5hcft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nnovl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jmwgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g2u8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_otto8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_8q82m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_epc7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_o7rgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_kdav3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jpbtr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qgdfx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l1fjw"]
+radius = 112.0
+height = 224.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=2086308516]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_4gyqm")
 enemy_details = SubResource("Resource_iifgy")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1989888926]
-scale = Vector2(0.23, 0.23)
-texture = ExtResource("3_qi2p4")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485160209]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_qku5p")
+animation = &"idle"
+frame = 3
+frame_progress = 0.4359787
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452155158]
-position = Vector2(-2, -3)
-shape = SubResource("CircleShape2D_qi2p4")
+position = Vector2(-2, -9)
+shape = SubResource("CapsuleShape2D_l1fjw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1767915388]
 unique_name_in_owner = true
