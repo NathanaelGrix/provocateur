@@ -48,6 +48,7 @@ func _ready() -> void:
 	$AnimatedSprite2D.play()
 	$DashTimer.timeout.connect(_on_dash_timer_timeout)
 	$DashCooldownTimer.timeout.connect(_on_dash_cooldown_timer_timeout)
+	$weapon/AnimatedSprite2D.animation_finished.connect(_on_attack_finished)
 	
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -113,9 +114,6 @@ func handle_idle() -> void:
 	
 func handle_move(direction: Vector2, delta: float) -> void:
 	velocity = direction.normalized() * SPEED * delta
-	
-func handle_attack() -> void:
-	pass
 
 
 func start_attack():
@@ -123,9 +121,10 @@ func start_attack():
 		is_attacking = true
 		attack_ready = false
 		print("attacking")
+		$weapon.rotation = global_position.angle_to_point(get_global_mouse_position())
 		$weapon/AnimatedSprite2D.visible = true
 		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = false
-		$AnimatedSprite2D.play("attack")
+		$weapon/AnimatedSprite2D.play("attack")
 		$AttackRechargeTimer.start()
 	
 
@@ -133,19 +132,16 @@ func _on_attack_recharge_timer_timeout():
 	attack_ready = true
 
 
-
-func _on_animated_sprite_2d_animation_finished():
-	if $AnimatedSprite2D.animation == "attack":
-		print("Done Attacking")
-		is_attacking = false
-		$weapon/AnimatedSprite2D.visible = false
-		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = true
-		if velocity != Vector2.ZERO:
-			$AnimatedSprite2D.play("move")
-		else:
-			$AnimatedSprite2D.play("idle")
-			$player_sfxs.stop()
-		$AnimatedSprite2D.play()
+func _on_attack_finished():
+	print("Done Attacking")
+	is_attacking = false
+	$weapon/AnimatedSprite2D.visible = false
+	$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = true
+	if velocity != Vector2.ZERO:
+		$AnimatedSprite2D.play("move")
+	else:
+		$AnimatedSprite2D.play("idle")
+	$AnimatedSprite2D.play()
 
 
 
