@@ -118,3 +118,13 @@ func get_nearest_aggroed_entity(from_entity: Entity) -> Entity:
 				nearest_entity = visible_components[other_id].parent_entity
 				min_distance = distance
 	return nearest_entity
+
+
+func _on_component_exiting(component: VisibilityComponent) -> void:
+	is_visible_mapping.erase(component.visibility_id)
+	for other_id in visible_components.keys():
+		is_visible_mapping[other_id][NOT_VISIBLE].erase(component.visibility_id)
+		is_visible_mapping[other_id][IS_VISIBLE].erase(component.visibility_id)
+	for tick in last_updated.keys():
+		last_updated[tick] = last_updated[tick].filter(func (id_arr): return not component.visibility_id in id_arr)
+	visible_components.erase(component.visibility_id)
