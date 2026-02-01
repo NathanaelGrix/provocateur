@@ -21,7 +21,7 @@ var aggro_target: Entity = null
 
 func _ready() -> void:
 	entity_id = IdGenerator.generate_entity_id()
-	for fac in Faction:
+	for fac in Faction.values():
 		aggro_against_factions[fac] = false
 	assert(visibility_component != null, "All entities must have a visibility component! Make sure to assign it to the \"visibility_component\" variable")
 	assert(visibility_component != null, "All entities must have a health component! Make sure to assign it to the \"health_component\" variable")
@@ -39,7 +39,8 @@ func _physics_process(_delta: float) -> void:
 
 func update_aggro_target() -> void:
 	aggro_target = Visibility.get_nearest_aggroed_entity(self)
+	print("aggro target updating!", aggro_target)
 	if aggro_target == null:
 		# If there are no targets visible, reset aggro
-		for fac in Faction:
+		for fac in aggro_against_factions.keys():
 			aggro_against_factions[fac] = false

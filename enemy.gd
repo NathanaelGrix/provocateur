@@ -5,6 +5,7 @@ const SPEED: float = 50000
 var next_position: Vector2
 
 func _ready() -> void:
+	super()
 	await get_tree().process_frame
 	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1, false)
 	health_component.health_depleted.connect(_kill_enemy)
@@ -25,4 +26,4 @@ func _kill_enemy() -> void:
 			pass
 			# don't kill the enemy yet as there is code that will crash when the
 			#  enemy deloads
-			#queue_free()
+			queue_free()

@@ -91,6 +91,8 @@ func register_visibility_component(new_component: VisibilityComponent) -> void:
 		is_visible_mapping[other_id][NOT_VISIBLE][new_component.visibility_id] = true
 		last_updated[0].append([other_id, new_component.visibility_id])
 	visible_components[new_component.visibility_id] = new_component
+	var cleanup_callable = Callable(self, "_on_component_exiting").bind(new_component)
+	new_component.tree_exiting.connect(cleanup_callable)
 
 
 func is_line_of_sight_between(first_entity: Entity, second_entity: Entity) -> bool:
@@ -123,8 +125,9 @@ func get_nearest_aggroed_entity(from_entity: Entity) -> Entity:
 func _on_component_exiting(component: VisibilityComponent) -> void:
 	is_visible_mapping.erase(component.visibility_id)
 	for other_id in visible_components.keys():
-		is_visible_mapping[other_id][NOT_VISIBLE].erase(component.visibility_id)
-		is_visible_mapping[other_id][IS_VISIBLE].erase(component.visibility_id)
+		if other_id != component.visibility_id:
+			is_visible_mapping[other_id][NOT_VISIBLE].erase(component.visibility_id)
+			is_visible_mapping[other_id][IS_VISIBLE].erase(component.visibility_id)
 	for tick in last_updated.keys():
 		last_updated[tick] = last_updated[tick].filter(func (id_arr): return not component.visibility_id in id_arr)
 	visible_components.erase(component.visibility_id)

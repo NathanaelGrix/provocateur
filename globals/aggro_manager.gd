@@ -1,11 +1,13 @@
 extends Node
 
 ## Faction -> Entity ID -> true (if false, remove from mapping)
-var aggro_mapping: Dictionary[Entity.Faction, Dictionary]
+var aggro_mapping: Dictionary[Entity.Faction, Dictionary] = {}
 
 
 func _ready() -> void:
 	SignalBus.damage_inflicted.connect(_on_damage_inflicted)
+	for fac in Entity.Faction.values():
+		aggro_mapping[fac] = {}
 
 
 func _on_damage_inflicted(attacker: Entity, victim: Entity) -> void:
@@ -16,3 +18,6 @@ func _on_damage_inflicted(attacker: Entity, victim: Entity) -> void:
 			continue
 		ally.aggro_against_factions[attacker.faction] = true
 		aggro_mapping[attacker.faction][ally.entity_id] = true
+	if victim.is_inside_tree():
+		victim.aggro_against_factions[attacker.faction] = true
+		aggro_mapping[attacker.faction][victim.entity_id] = true
