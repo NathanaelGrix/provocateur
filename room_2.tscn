@@ -1794,6 +1794,7 @@ tile_set = SubResource("TileSet_vwuv8")
 
 [node name="Darkness" type="ColorRect" parent="." unique_id=564530022]
 visible = false
+z_index = 1
 offset_left = -2430.0
 offset_top = 1164.0
 offset_right = 2346.0

@@ -1791,6 +1791,7 @@ tile_set = SubResource("TileSet_rujdd")
 
 [node name="Darkness" type="ColorRect" parent="." unique_id=564530022]
 visible = false
+z_index = 1
 offset_left = 1561.0
 offset_top = -3933.0
 offset_right = 4891.0
@@ -1800,6 +1801,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Darkness2" type="ColorRect" parent="." unique_id=853765818]
 visible = false
+z_index = 1
 offset_left = -848.0
 offset_top = -3955.0
 offset_right = 2035.0

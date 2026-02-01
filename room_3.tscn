@@ -1790,6 +1790,7 @@ tile_set = SubResource("TileSet_68ahk")
 
 [node name="Darkness" type="ColorRect" parent="." unique_id=564530022]
 visible = false
+z_index = 1
 offset_left = -3952.0
 offset_top = -3289.0
 offset_right = -820.0
@@ -1799,6 +1800,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Darkness2" type="ColorRect" parent="." unique_id=798298509]
 visible = false
+z_index = 1
 offset_left = -3987.0
 offset_top = -2383.0
 offset_right = -2331.0

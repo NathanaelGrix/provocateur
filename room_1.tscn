@@ -1794,6 +1794,7 @@ polygon = PackedVector2Array(-10, -2.0100098, -4, -934.01, 3268, -931.01, 3257, 
 
 [node name="Darkness" type="ColorRect" parent="." unique_id=564530022]
 visible = false
+z_index = 1
 offset_left = 1587.0
 offset_top = -566.0
 offset_right = 4893.0
@@ -1803,6 +1804,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Darkness2" type="ColorRect" parent="." unique_id=1953250147]
 visible = false
+z_index = 1
 offset_left = 2288.0
 offset_top = 1133.0
 offset_right = 4882.0
