@@ -11,6 +11,12 @@ func _ready() -> void:
 
 
 func _on_damage_inflicted(attacker: Entity, victim: Entity) -> void:
+	# Prevent friendly fire from turning factions against each other lol
+	if attacker.faction == victim.faction:
+		return
+	# Don't update aggro for the player
+	if victim.faction == Entity.Faction.PLAYER:
+		return
 	var visible_others = Visibility.get_all_entities_visible_to(victim)
 	var victim_allies = visible_others.filter(func (other): return other.faction == victim.faction)
 	for ally: Entity in victim_allies:

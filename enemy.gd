@@ -10,10 +10,10 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	%NavigationAgent2D.target_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers, false)
 	health_component.health_depleted.connect(_kill_enemy)
+	$AttackCooldownTimer.timeout.connect(_on_attack_off_cooldown)
 	
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
-		create_bullet()
+	super(delta)
 	if !%NavigationAgent2D.is_navigation_finished():
 		next_position = %NavigationAgent2D.get_next_path_position()
 		velocity = global_position.direction_to(next_position).normalized() * SPEED * delta
@@ -21,11 +21,26 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	move_and_slide()
 
+
 func create_bullet():
 	var created_bullet = bullet.instantiate()
+	created_bullet.parentEntity = self
 	created_bullet.position = position
-	created_bullet.target_position = get_viewport().get_mouse_position()
+	created_bullet.target_position = aggro_target.global_position
 	get_tree().root.add_child(created_bullet)
+
+
+func _on_attack_off_cooldown() -> void:
+	if aggro_target != null:
+		create_bullet()
+	else:
+		$AttackCooldownTimer.stop()
+
+
+func update_aggro_target() -> void:
+	super()
+	$AttackCooldownTimer.start(1)
+
 
 func _on_timer_timeout() -> void:
 	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1,false)

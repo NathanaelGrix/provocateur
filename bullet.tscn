@@ -2,7 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://bkhx4vfxu0vv0" path="res://Art/weapons/bullet.png" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://5xx3w6hr4fts" path="res://bullet.gd" id="2_v8qja"]
+[ext_resource type="Script" uid="uid://bd883yoa1ayxt" path="res://hitArea2D.gd" id="3_t4vbm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b2rl"]
 
 [node name="Bullet" type="Sprite2D" unique_id=1556381357]
 texture = ExtResource("1_v7oki")
 script = ExtResource("2_v8qja")
+
+[node name="HitArea2D" type="Area2D" parent="." unique_id=1028926145]
+script = ExtResource("3_t4vbm")
+metadata/_custom_type_script = "uid://bd883yoa1ayxt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D" unique_id=524156845]
+position = Vector2(9, 2)
+shape = SubResource("CircleShape2D_2b2rl")

@@ -79,11 +79,10 @@ func _process(delta: float) -> void:
 			handle_move(direction, delta)
 			
 	move_and_slide()
-	
-	
 
 
 func _physics_process(delta: float) -> void:
+	super(delta)
 	var direction = Input.get_vector("left", "right", "up", "down")
 
 	if is_dashing:

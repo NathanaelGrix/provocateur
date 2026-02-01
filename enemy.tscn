@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="2_jmwgi"]
 [ext_resource type="Texture2D" uid="uid://denk3hsutvrk3" path="res://Art/Cowboy/idle/Cowboy Idle Animation1.png" id="3_doop2"]
 [ext_resource type="Texture2D" uid="uid://2fvnf1bkhlyo" path="res://Art/Cowboy/idle/Cowboy Idle Animation2.png" id="4_5hcft"]
-[ext_resource type="Script" uid="uid://bs0srdqadorqt" path="res://hurtArea2D.gd" id="4_epg4t"]
+[ext_resource type="Script" path="res://hurtArea2D.gd" id="4_epg4t"]
 [ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="4_iifgy"]
 [ext_resource type="Texture2D" uid="uid://cvh7nm4aga11r" path="res://Art/Cowboy/idle/Cowboy Idle Animation3.png" id="5_nnovl"]
 [ext_resource type="Texture2D" uid="uid://db2s4kdbc2wag" path="res://Art/Cowboy/idle/Cowboy Idle Animation4.png" id="6_jmwgi"]
@@ -124,5 +124,8 @@ metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 [node name="VisibilityComponent" type="Node2D" parent="." unique_id=534113169]
 script = ExtResource("16_nnovl")
 metadata/_custom_type_script = "uid://cdo28580vtf37"
+
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=526806068]
+wait_time = 3.0
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
