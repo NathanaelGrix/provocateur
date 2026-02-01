@@ -9,7 +9,7 @@ var last_direction := Vector2.RIGHT
 var dash_direction := Vector2.ZERO
 
 
-enum PlayerState {IDLE, MOVE, DASH}
+enum PlayerState {IDLE, MOVE, DASH, COWBOY, ALIEN}
 
 @export var sfx_player_footstep : AudioStream
 @export var sfx_player_dash: AudioStream
@@ -24,9 +24,7 @@ func change_state(new_state: PlayerState) -> void:
 		return
 		
 	state = new_state
-	
-	if is_attacking:
-		return
+
 	match state:
 		PlayerState.IDLE:
 			$AnimatedSprite2D.play("idle")
@@ -36,6 +34,12 @@ func change_state(new_state: PlayerState) -> void:
 			
 		PlayerState.DASH:
 			$AnimatedSprite2D.play("dash")
+			
+		PlayerState.COWBOY:
+			$AnimatedSprite2D.play("cowboyDisguise")
+			
+		PlayerState.ALIEN:
+			$AnimatedSprite2D.play("alienDisguise")
 
 @export var attack_cooldown := 0.5
 
@@ -49,10 +53,18 @@ func _ready() -> void:
 	$DashTimer.timeout.connect(_on_dash_timer_timeout)
 	$DashCooldownTimer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	$weapon/AnimatedSprite2D.animation_finished.connect(_on_attack_finished)
+	health_component.health_depleted.connect(_kill_player)
 	
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
-		
+	
+	if Input.is_action_just_pressed("tempTurnAlien"):
+		faction = Faction.ALIEN	
+	if Input.is_action_just_pressed("tempTurnCowboy"):
+		faction = Faction.COWBOY
+	if Input.is_action_just_pressed("tempTurnPlayer"):
+		faction = Faction.PLAYER
+	
 	if Input.is_action_just_pressed("dash") and can_dash:
 		$PlayerDashSFX.stream = sfx_player_dash
 		$PlayerDashSFX.play()
@@ -84,17 +96,37 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	var direction = Input.get_vector("left", "right", "up", "down")
-
-	if is_dashing:
-		change_state(PlayerState.DASH)
-		velocity = last_direction * dash_speed
-	else:
-		if direction == Vector2.ZERO:
-			change_state(PlayerState.IDLE)
-			handle_idle()
-		else:
-			change_state(PlayerState.MOVE)
-			handle_move(direction, delta)
+	
+	match faction:
+		Faction.PLAYER:
+			if is_dashing:
+				change_state(PlayerState.DASH)
+				velocity = last_direction * dash_speed
+			else:
+				if direction == Vector2.ZERO:
+					change_state(PlayerState.IDLE)
+					handle_idle()
+				else:
+					change_state(PlayerState.MOVE)
+					handle_move(direction, delta)
+		Faction.COWBOY:
+			change_state(PlayerState.COWBOY)
+			if is_dashing:
+				velocity = last_direction * dash_speed
+			else:
+				if direction == Vector2.ZERO:
+					handle_idle()
+				else:
+					handle_move(direction, delta)
+		Faction.ALIEN:
+			change_state(PlayerState.ALIEN)
+			if is_dashing:
+				velocity = last_direction * dash_speed
+			else:
+				if direction == Vector2.ZERO:
+					handle_idle()
+				else:
+					handle_move(direction, delta)
 
 	move_and_slide()
 
@@ -104,7 +136,8 @@ func start_dash():
 	
 	dash_direction = last_direction
 	
-	change_state(PlayerState.DASH)
+	if faction == Faction.PLAYER:
+		change_state(PlayerState.DASH)
 	$DashTimer.start()
 
 
@@ -119,10 +152,10 @@ func start_attack():
 	if attack_ready:
 		is_attacking = true
 		attack_ready = false
-		print("attacking")
 		$weapon.rotation = global_position.angle_to_point(get_global_mouse_position())
 		$weapon/AnimatedSprite2D.visible = true
 		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = false
+		$weapon/AnimatedSprite2D/HitArea2D.already_hit.clear()
 		$weapon/AnimatedSprite2D.play("attack")
 		$AttackRechargeTimer.start()
 	
@@ -132,15 +165,17 @@ func _on_attack_recharge_timer_timeout():
 
 
 func _on_attack_finished():
-	print("Done Attacking")
 	is_attacking = false
 	$weapon/AnimatedSprite2D.visible = false
 	$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = true
-	if velocity != Vector2.ZERO:
-		$AnimatedSprite2D.play("move")
-	else:
-		$AnimatedSprite2D.play("idle")
-	$AnimatedSprite2D.play()
+	if faction == Faction.PLAYER:
+		if velocity != Vector2.ZERO:
+			change_state(PlayerState.MOVE)
+			#$AnimatedSprite2D.play("move")
+		else:
+			change_state(PlayerState.IDLE)
+			#$AnimatedSprite2D.play("idle")
+	#$AnimatedSprite2D.play()
 
 
 
@@ -161,3 +196,9 @@ func _on_dash_timer_timeout():
 
 func _on_dash_cooldown_timer_timeout():
 	can_dash = true
+	
+# when the player dies just reset the scene
+func _kill_player() -> void:
+	if health_component.current_health <= 0:
+		if is_instance_valid(self):
+			get_tree().reload_current_scene()
