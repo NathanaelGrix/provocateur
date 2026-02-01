@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dd8jhyx75jild"]
 
 [ext_resource type="Script" uid="uid://batne5be13mlj" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="2_jmwgi"]
 [ext_resource type="Texture2D" uid="uid://denk3hsutvrk3" path="res://Art/Cowboy/idle/Cowboy Idle Animation1.png" id="3_doop2"]
 [ext_resource type="Texture2D" uid="uid://2fvnf1bkhlyo" path="res://Art/Cowboy/idle/Cowboy Idle Animation2.png" id="4_5hcft"]
-[ext_resource type="Script" path="res://hurtArea2D.gd" id="4_epg4t"]
+[ext_resource type="Script" uid="uid://bs0srdqadorqt" path="res://hurtArea2D.gd" id="4_epg4t"]
 [ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="4_iifgy"]
 [ext_resource type="Texture2D" uid="uid://cvh7nm4aga11r" path="res://Art/Cowboy/idle/Cowboy Idle Animation3.png" id="5_nnovl"]
 [ext_resource type="Texture2D" uid="uid://db2s4kdbc2wag" path="res://Art/Cowboy/idle/Cowboy Idle Animation4.png" id="6_jmwgi"]
@@ -16,6 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://b4iwi7d575n03" path="res://Art/Cowboy/walk/Cowboy Walk Animation5.png" id="13_jpbtr"]
 [ext_resource type="Texture2D" uid="uid://buny7cbkuvruh" path="res://Art/Cowboy/walk/Cowboy Walk Animation6.png" id="14_qgdfx"]
 [ext_resource type="Script" uid="uid://cdo28580vtf37" path="res://components/visibility_component.gd" id="16_nnovl"]
+
+[sub_resource type="Resource" id="Resource_g2u8i"]
+script = ExtResource("2_jmwgi")
+metadata/_custom_type_script = "uid://d2itsf05pdx37"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qku5p"]
 animations = [{
@@ -78,6 +83,7 @@ collision_layer = 4
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_4gyqm")
+enemy_details = SubResource("Resource_g2u8i")
 visibility_component = NodePath("VisibilityComponent")
 health_component = NodePath("HealthComponent")
 faction = 2
@@ -120,4 +126,3 @@ script = ExtResource("16_nnovl")
 metadata/_custom_type_script = "uid://cdo28580vtf37"
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
-
