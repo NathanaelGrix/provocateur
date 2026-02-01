@@ -9,4 +9,5 @@ idle_animation = "cowboy_idle"
 walk_animation = "cowboy_walk"
 dead_animation = "cowboy_dead"
 gunshot_sound = ExtResource("1_fpeqp")
+attack_type = 1
 metadata/_custom_type_script = "uid://d2itsf05pdx37"
