@@ -37,8 +37,9 @@ func _physics_process(delta: float) -> void:
 func create_bullet():
 	var created_bullet = bullet.instantiate()
 	created_bullet.parentEntity = self
-	created_bullet.position = position
 	created_bullet.target_position = aggro_target.global_position
+	created_bullet.global_position = global_position
+	created_bullet.global_position += (200 * created_bullet.get_direction_fired())
 	get_tree().root.add_child(created_bullet)
 
 
