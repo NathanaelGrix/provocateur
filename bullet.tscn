@@ -17,3 +17,9 @@ metadata/_custom_type_script = "uid://bd883yoa1ayxt"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D" unique_id=524156845]
 position = Vector2(9, 2)
 shape = SubResource("CircleShape2D_2b2rl")
+
+[node name="Timer" type="Timer" parent="." unique_id=651464298]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

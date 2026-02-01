@@ -16,15 +16,15 @@
 [ext_resource type="Texture2D" uid="uid://dbdw7a36vhv86" path="res://Art/Chalkboard.png" id="10_7l7f8"]
 [ext_resource type="PackedScene" uid="uid://ekby4tnm12xd" path="res://key.tscn" id="12_1ygvo"]
 [ext_resource type="Texture2D" uid="uid://c6f851s7wxvgu" path="res://Art/Number 4.png" id="12_dmidp"]
-[ext_resource type="PackedScene" uid="uid://c4ccfvdt2350q" path="res://start_room.tscn" id="12_gq61q"]
-[ext_resource type="PackedScene" uid="uid://cjop1hxr1n2n1" path="res://room_1.tscn" id="13_u36aa"]
-[ext_resource type="PackedScene" uid="uid://ckw3oy2fo5bqe" path="res://room_2.tscn" id="14_dx6cf"]
+[ext_resource type="PackedScene" path="res://start_room.tscn" id="12_gq61q"]
+[ext_resource type="PackedScene" path="res://room_1.tscn" id="13_u36aa"]
+[ext_resource type="PackedScene" path="res://room_2.tscn" id="14_dx6cf"]
 [ext_resource type="AudioStream" uid="uid://dc2ysxkbm4ysb" path="res://Audio/Music/mp3 Versions/1 Intro_ Get Provoked_ 4 Bar + 1Bar for overlap-120bpm Gm.mp3" id="14_e7grg"]
 [ext_resource type="PackedScene" uid="uid://elwf4meemdkb" path="res://chalkboard.tscn" id="15_3qa0k"]
 [ext_resource type="AudioStream" uid="uid://d2ordjdhhypfr" path="res://Audio/Music/mp3 Versions/A1 Sneaky_ Get Provoked_ 8 Bars 120bpm Gm.mp3" id="15_f6xqv"]
-[ext_resource type="PackedScene" uid="uid://c5p1t8dw2a88m" path="res://room_3.tscn" id="15_i43pf"]
+[ext_resource type="PackedScene" path="res://room_3.tscn" id="15_i43pf"]
 [ext_resource type="AudioStream" uid="uid://d34en1cfiygbk" path="res://Audio/Music/mp3 Versions/A2 Sneaky_ Get Provoked_ 8 Bars 120bpm Gm.mp3" id="16_4bs2e"]
-[ext_resource type="PackedScene" uid="uid://6802dmhlr3qo" path="res://room_4.tscn" id="16_gvfwj"]
+[ext_resource type="PackedScene" path="res://room_4.tscn" id="16_gvfwj"]
 [ext_resource type="AudioStream" uid="uid://b8apv6q1ytr6f" path="res://Audio/SFXs/Ambience/AMB Starting Room.wav" id="17_pphbs"]
 [ext_resource type="AudioStream" uid="uid://be0figsxav4so" path="res://Audio/Music/mp3 Versions/B1 Costume Aquired_Get Provoked_ 8 Bars 120bpm Gm.mp3" id="17_y0tqy"]
 [ext_resource type="AudioStream" uid="uid://dd1wyat2w3wi2" path="res://Audio/Music/mp3 Versions/C1 Fight_Provoked_ 8 Bars 120bpm Gm.mp3" id="18_5vjfb"]
@@ -35,11 +35,26 @@
 [ext_resource type="Texture2D" uid="uid://crdnqncfo7gu7" path="res://Art/Number 2.png" id="28_vssm6"]
 [ext_resource type="Texture2D" uid="uid://dqhgx5ub25onf" path="res://Art/Number 3.png" id="29_gh71b"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gq61q"]
+vertices = PackedVector2Array(2412.8984, 1031.7266, 1673, 1051.7188, 1673, -454.96875, 4841.961, -448.02344, 4828.039, 3178, 2432.9063, 3178)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1663, -465, 4852, -458, 4838, 3188, 2423, 3188, 2403, 1042, 1663, 1062)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_u36aa"]
+vertices = PackedVector2Array(2214.9063, 3740.8906, -2238.8594, 3694.1016, -2205.1406, 1259, 2195.0781, 1259)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2215, 1249, 2205, 1249, 2225, 3751, -2249, 3704)])
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1ygvo"]
 vertices = PackedVector2Array(-1430, -2038, -896.03125, -3199, -907.96875, 1069.0313, -1526, -406, -1526, -538, -1430, -2346, -2758, -1398, -1770, -2038, -3402, -538, -2758, -2842, -1770, -2346, -3142, 1498, -3142, 502, -2467, 1075.0391, -2467, 1992, -3878.0234, 1992, -3290, 1498, -3290, 502, -3890.9766, -3199, -3402, -406, -2858, -1398, -2858, -2842)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(1, 0, 5), PackedInt32Array(6, 7, 0, 4, 8), PackedInt32Array(7, 6, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(11, 14, 15, 16), PackedInt32Array(17, 16, 15, 18, 19), PackedInt32Array(20, 6, 8), PackedInt32Array(19, 3, 2, 13, 12), PackedInt32Array(19, 12, 17), PackedInt32Array(8, 19, 18), PackedInt32Array(20, 8, 18, 21), PackedInt32Array(21, 18, 1, 9), PackedInt32Array(10, 9, 1, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-3901, -3209, -886, -3209, -898, 1079, -2457, 1085, -2457, 2002, -3888, 2002)])
 source_geometry_mode = 2
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dx6cf"]
+vertices = PackedVector2Array(-1156.2578, -3383.1484, -1168.7188, -3841, 4811.9766, -3841, -705.0781, -3390.1563, 4805.0234, -678.89844, 2671.9297, -659.09375, 2658.9375, -2778, 2464.1875, -2778, -685.0703, -820.0469, 1661.8281, -834.0469, 2423.6094, -673.6719, 1681.8281, -672.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 2), PackedInt32Array(3, 2, 6, 7), PackedInt32Array(8, 3, 7, 9), PackedInt32Array(9, 7, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1179, -3851, 4822, -3851, 4815, -669, 2662, -649, 2649, -2768, 2474, -2768, 2433.4329, -663.6941, 1673, -662, 1653, -824, -695, -810, -715, -3380, -1166, -3373)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m1rya"]
 texture = ExtResource("1_1wgsg")
@@ -1898,14 +1913,7 @@ Vector2i(4, 3): {
 [node name="RoomController" parent="." unique_id=198522026 instance=ExtResource("1_pphbs")]
 doors = Array[NodePath]([NodePath("../Door"), NodePath("../Door2"), NodePath("../Door3"), NodePath("../Door4")])
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2119653519]
-visible = false
-navigation_polygon = SubResource("NavigationPolygon_1ygvo")
-enter_cost = 100.0
-
-[node name="TileMap" type="TileMap" parent="." unique_id=1344575166]
-tile_set = SubResource("TileSet_ssfg1")
-format = 2
+[node name="TileMap" type="Node2D" parent="." unique_id=1976856859]
 
 [node name="StartRoom" parent="TileMap" unique_id=524570925 instance=ExtResource("12_gq61q")]
 position = Vector2(9, -14)
@@ -1913,11 +1921,24 @@ position = Vector2(9, -14)
 [node name="Room_1" parent="TileMap" unique_id=1473729678 instance=ExtResource("13_u36aa")]
 position = Vector2(-30, 18)
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap/Room_1" unique_id=71773217]
+navigation_polygon = SubResource("NavigationPolygon_gq61q")
+
 [node name="Room_2" parent="TileMap" unique_id=1221198115 instance=ExtResource("14_dx6cf")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap/Room_2" unique_id=370085519]
+navigation_polygon = SubResource("NavigationPolygon_u36aa")
 
 [node name="Room_3" parent="TileMap" unique_id=860808104 instance=ExtResource("15_i43pf")]
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap/Room_3" unique_id=2119653519]
+navigation_polygon = SubResource("NavigationPolygon_1ygvo")
+enter_cost = 100.0
+
 [node name="Room_4" parent="TileMap" unique_id=494105408 instance=ExtResource("16_gvfwj")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap/Room_4" unique_id=284655269]
+navigation_polygon = SubResource("NavigationPolygon_dx6cf")
 
 [node name="Walls" type="TileMapLayer" parent="TileMap" unique_id=663622871 groups=["navigation_polygon_source_geometry_group"]]
 use_parent_material = true
@@ -1977,10 +1998,22 @@ position = Vector2(1294, -715)
 position = Vector2(352, 230)
 
 [node name="Enemy" parent="." unique_id=2086308516 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(-2106, -1222)
-navigation_region = NodePath("../NavigationRegion2D")
+position = Vector2(3600, 1341)
+navigation_region = NodePath("../TileMap/Room_1/NavigationRegion2D")
 
 [node name="AudioStreamPlayer2D_Ambience" type="AudioStreamPlayer" parent="." unique_id=1753247641]
 stream = ExtResource("17_pphbs")
 autoplay = true
 bus = &"SFXS Bus"
+
+[node name="Enemy2" parent="." unique_id=918026956 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(-209, 1885)
+navigation_region = NodePath("../TileMap/Room_2/NavigationRegion2D")
+
+[node name="Enemy3" parent="." unique_id=1892930463 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(-2159, 306)
+navigation_region = NodePath("../TileMap/Room_3/NavigationRegion2D")
+
+[node name="Enemy4" parent="." unique_id=1862090460 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(1162, -1559)
+navigation_region = NodePath("../TileMap/Room_4/NavigationRegion2D")
