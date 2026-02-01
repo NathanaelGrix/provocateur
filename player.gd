@@ -54,6 +54,7 @@ func _ready() -> void:
 	$DashCooldownTimer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	$weapon/AnimatedSprite2D.animation_finished.connect(_on_attack_finished)
 	health_component.health_depleted.connect(_kill_player)
+	SignalBus.player_changed_faction.connect(_on_player_changed_faction)
 	
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -202,3 +203,11 @@ func _kill_player() -> void:
 	if health_component.current_health <= 0:
 		if is_instance_valid(self):
 			get_tree().reload_current_scene()
+
+
+func _on_player_changed_faction(new_faction: Faction) -> void:
+	faction = new_faction
+	if new_faction == Faction.COWBOY:
+		change_state(PlayerState.COWBOY)
+	elif new_faction == Faction.ALIEN:
+		change_state(PlayerState.ALIEN)

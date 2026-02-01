@@ -247,7 +247,6 @@ animation = &"alien_dead"
 scale = Vector2(0.25, 0.25)
 collision_layer = 4
 collision_mask = 0
-monitoring = false
 script = ExtResource("4_epg4t")
 
 [node name="HurtBox" type="CollisionShape2D" parent="AnimatedSprite2D/HurtArea2D" unique_id=2005937615]
