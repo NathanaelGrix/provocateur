@@ -1778,7 +1778,6 @@ script = ExtResource("1_ni4rl")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=606886699]
 collision_layer = 2
-collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1408318207]
 position = Vector2(305, -750)
