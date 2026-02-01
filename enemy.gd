@@ -1,4 +1,5 @@
 class_name Enemy extends Entity
+
 @export var enemy_details: EnemyDetails
 @export var navigation_region: NavigationRegion2D
 const SPEED: float = 20000
@@ -79,6 +80,8 @@ func change_state(local_state: State):
 			aggro_target = null
 			$AttackCooldownTimer.paused = true
 			health_component.visible = false
+			remove_child(%CollisionShape2D)
+			%PickupBox.set_deferred("disabled",false)
 		State.IDLE:
 			%AnimatedSprite2D.animation = enemy_details.idle_animation
 			%AnimatedSprite2D.play()

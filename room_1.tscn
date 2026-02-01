@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cq2j6etiaj4ys" path="res://Art/Floor Tile Basic 6.png" id="9_4v1oy"]
 [ext_resource type="Texture2D" uid="uid://bjmif2wycgodj" path="res://Art/Floor Tile Basic 5.png" id="10_xwr4s"]
 [ext_resource type="Texture2D" uid="uid://dbdw7a36vhv86" path="res://Art/Chalkboard.png" id="11_r68c7"]
+[ext_resource type="PackedScene" uid="uid://bb21ugc0t8kj4" path="res://pool_table.tscn" id="12_wt23i"]
+[ext_resource type="PackedScene" uid="uid://dmi66hj7rk848" path="res://pool_table_2.tscn" id="13_3twan"]
+[ext_resource type="PackedScene" uid="uid://cdo34thi10jqi" path="res://table_2.tscn" id="14_dhf37"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3afyh"]
 texture = ExtResource("2_3afyh")
@@ -1806,6 +1809,18 @@ offset_right = 4882.0
 offset_bottom = 3353.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Pool Table" parent="." unique_id=1277304114 instance=ExtResource("12_wt23i")]
+position = Vector2(3528, 1345)
+scale = Vector2(3.76, 3.76)
+
+[node name="Pool Table 2" parent="." unique_id=591263854 instance=ExtResource("13_3twan")]
+position = Vector2(3573.0002, 2454)
+scale = Vector2(3.75, 3.75)
+
+[node name="Table2" parent="." unique_id=1997341025 instance=ExtResource("14_dhf37")]
+position = Vector2(2861, 223)
+scale = Vector2(3.5, 3.5)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

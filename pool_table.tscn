@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bb21ugc0t8kj4"]
+
+[ext_resource type="PackedScene" uid="uid://bxahw37n320pj" path="res://table_1.tscn" id="1_ryorf"]
+[ext_resource type="Texture2D" uid="uid://ct2y2dyx7n1vp" path="res://Art/Pool Table.png" id="2_nbvsd"]
+
+[node name="Pool Table" unique_id=1277304114 instance=ExtResource("1_ryorf")]
+
+[node name="Sprite2D" parent="." index="1" unique_id=882813710]
+texture = ExtResource("2_nbvsd")
