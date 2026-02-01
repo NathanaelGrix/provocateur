@@ -2,28 +2,177 @@
 
 [ext_resource type="Script" uid="uid://batne5be13mlj" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="2_jmwgi"]
+[ext_resource type="Texture2D" uid="uid://dx3ju6qc2kbbg" path="res://Art/Alien/alien dead1.png" id="3_ccdwq"]
 [ext_resource type="Texture2D" uid="uid://denk3hsutvrk3" path="res://Art/Cowboy/idle/Cowboy Idle Animation1.png" id="3_doop2"]
+[ext_resource type="Texture2D" uid="uid://xtv8f50h1xax" path="res://Art/Alien/alien_spritesheet.png" id="3_otto8"]
+[ext_resource type="Texture2D" uid="uid://boldnedea1m8n" path="res://Art/Alien/alien dead2.png" id="4_0jgdh"]
 [ext_resource type="Texture2D" uid="uid://2fvnf1bkhlyo" path="res://Art/Cowboy/idle/Cowboy Idle Animation2.png" id="4_5hcft"]
 [ext_resource type="Script" uid="uid://bs0srdqadorqt" path="res://hurtArea2D.gd" id="4_epg4t"]
 [ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="4_iifgy"]
+[ext_resource type="Texture2D" uid="uid://qwbl27i2xgjp" path="res://Art/Alien/alien dead3.png" id="5_6wg26"]
 [ext_resource type="Texture2D" uid="uid://cvh7nm4aga11r" path="res://Art/Cowboy/idle/Cowboy Idle Animation3.png" id="5_nnovl"]
 [ext_resource type="Texture2D" uid="uid://db2s4kdbc2wag" path="res://Art/Cowboy/idle/Cowboy Idle Animation4.png" id="6_jmwgi"]
+[ext_resource type="Texture2D" uid="uid://cbyj22lrads1v" path="res://Art/Alien/alien dead4.png" id="6_qskgw"]
 [ext_resource type="Texture2D" uid="uid://bdgsearbvl5na" path="res://Art/Cowboy/idle/Cowboy Idle Animation5.png" id="7_g2u8i"]
+[ext_resource type="Texture2D" uid="uid://dhsp6u3tk7i0y" path="res://Art/Alien/alien dead5.png" id="7_g3onx"]
+[ext_resource type="Texture2D" uid="uid://cn56rrritgyqf" path="res://Art/Alien/alien dead6.png" id="8_o707m"]
 [ext_resource type="Texture2D" uid="uid://dos53loimxagv" path="res://Art/Cowboy/idle/Cowboy Idle Animation6.png" id="8_otto8"]
 [ext_resource type="Texture2D" uid="uid://copyslqfuk1ti" path="res://Art/Cowboy/walk/Cowboy Walk Animation1.png" id="9_8q82m"]
+[ext_resource type="Texture2D" uid="uid://cjo8nwkf5ojty" path="res://Art/Cowboy/Cowboy Dead/Cowboy Hat1.png" id="10_difxq"]
 [ext_resource type="Texture2D" uid="uid://yerbh4qqcbel" path="res://Art/Cowboy/walk/Cowboy Walk Animation2.png" id="10_epc7x"]
+[ext_resource type="Texture2D" uid="uid://busipvl1hysrm" path="res://Art/Cowboy/Cowboy Dead/Cowboy Hat2.png" id="11_5tv8x"]
 [ext_resource type="Texture2D" uid="uid://c5jc8x5di03h6" path="res://Art/Cowboy/walk/Cowboy Walk Animation3.png" id="11_o7rgc"]
+[ext_resource type="Texture2D" uid="uid://dl2mocblttx5e" path="res://Art/Cowboy/Cowboy Dead/Cowboy Hat3.png" id="12_jnl6c"]
 [ext_resource type="Texture2D" uid="uid://ds2kry3imim0k" path="res://Art/Cowboy/walk/Cowboy Walk Animation4.png" id="12_kdav3"]
 [ext_resource type="Texture2D" uid="uid://b4iwi7d575n03" path="res://Art/Cowboy/walk/Cowboy Walk Animation5.png" id="13_jpbtr"]
+[ext_resource type="Texture2D" uid="uid://3ogg7c4o6wvj" path="res://Art/Cowboy/Cowboy Dead/Cowboy Hat4.png" id="13_lv0vf"]
+[ext_resource type="Texture2D" uid="uid://c2l7fdmn8lhj6" path="res://Art/Cowboy/Cowboy Dead/Cowboy Hat5.png" id="14_6fu1e"]
 [ext_resource type="Texture2D" uid="uid://buny7cbkuvruh" path="res://Art/Cowboy/walk/Cowboy Walk Animation6.png" id="14_qgdfx"]
+[ext_resource type="Texture2D" uid="uid://bltidd111b7ft" path="res://Art/Cowboy/Cowboy Dead/Cowboy Hat6.png" id="15_p80fi"]
 [ext_resource type="Script" uid="uid://cdo28580vtf37" path="res://components/visibility_component.gd" id="16_nnovl"]
+[ext_resource type="AudioStream" uid="uid://c2kml883imu3i" path="res://Audio/SFXs/Enemies/Pistol Cowboy.wav" id="18_g2u8i"]
 
 [sub_resource type="Resource" id="Resource_g2u8i"]
 script = ExtResource("2_jmwgi")
 metadata/_custom_type_script = "uid://d2itsf05pdx37"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q82m"]
+atlas = ExtResource("3_otto8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epc7x"]
+atlas = ExtResource("3_otto8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7rgc"]
+atlas = ExtResource("3_otto8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdav3"]
+atlas = ExtResource("3_otto8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpbtr"]
+atlas = ExtResource("3_otto8")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgdfx"]
+atlas = ExtResource("3_otto8")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qku5p"]
+atlas = ExtResource("3_otto8")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1fjw"]
+atlas = ExtResource("3_otto8")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5wqg"]
+atlas = ExtResource("3_otto8")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgro5"]
+atlas = ExtResource("3_otto8")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18rq2"]
+atlas = ExtResource("3_otto8")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccdwq"]
+atlas = ExtResource("3_otto8")
+region = Rect2(64, 128, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qku5p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ccdwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0jgdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6wg26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qskgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g3onx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_o707m")
+}],
+"loop": true,
+"name": &"alien_dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q82m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epc7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7rgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdav3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpbtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgdfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qku5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1fjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5wqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgro5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18rq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccdwq")
+}],
+"loop": true,
+"name": &"alien_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_difxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5tv8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jnl6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lv0vf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6fu1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_p80fi")
+}],
+"loop": true,
+"name": &"cowboy_dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_doop2")
@@ -44,8 +193,8 @@ animations = [{
 "texture": ExtResource("8_otto8")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 4.0
+"name": &"cowboy_idle",
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -67,8 +216,8 @@ animations = [{
 "texture": ExtResource("14_qgdfx")
 }],
 "loop": true,
-"name": &"walk",
-"speed": 8.0
+"name": &"cowboy_walk",
+"speed": 9.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3yqyl"]
@@ -92,8 +241,7 @@ metadata/_custom_type_script = "uid://bsmjmjcwf80si"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485160209]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qku5p")
-animation = &"walk"
-frame_progress = 0.41696292
+animation = &"cowboy_walk"
 
 [node name="HurtArea2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1774631892]
 scale = Vector2(0.25, 0.25)
@@ -127,5 +275,9 @@ metadata/_custom_type_script = "uid://cdo28580vtf37"
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=526806068]
 wait_time = 3.0
+
+[node name="AudioStreamPlayer2D_Gun" type="AudioStreamPlayer2D" parent="." unique_id=210515620]
+stream = ExtResource("18_g2u8i")
+pitch_scale = 1.1
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

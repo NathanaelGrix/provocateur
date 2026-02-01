@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyDetails" format=3 uid="uid://bapisb6si3651"]
+
+[ext_resource type="AudioStream" uid="uid://nwbiiqni6yyo" path="res://Audio/SFXs/Enemies/Laser Gun 2.mp3" id="1_cuc3b"]
+[ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="1_n02au"]
+[ext_resource type="AudioStream" uid="uid://cggcpktnoo1x4" path="res://Audio/SFXs/Enemies/Laser Gun 1.mp3" id="2_5qmif"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8scj8"]
+streams_count = 2
+stream_0/stream = ExtResource("1_cuc3b")
+stream_1/stream = ExtResource("2_5qmif")
+
+[resource]
+script = ExtResource("1_n02au")
+idle_animation = "\"alien_walk\""
+walk_animation = "\"alien_walk\""
+dead_animation = "\"alien_dead\""
+gunshot_sound = SubResource("AudioStreamRandomizer_8scj8")
+attack_type = 1
+metadata/_custom_type_script = "uid://d2itsf05pdx37"
