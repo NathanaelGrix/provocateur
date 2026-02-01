@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duxrfjy7dsxif"
-path="res://.godot/imported/igmbji9ii8c1j5tn9dgqmu31dt.png-4ddeeb1938f196a2f92d4a91eba3d0f0.ctex"
+uid="uid://cgl3l7f2hrtb5"
+path="res://.godot/imported/Player_lil_red_monster7.png-b8002de598829275207adf567a45dc7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemy/igmbji9ii8c1j5tn9dgqmu31dt.png"
-dest_files=["res://.godot/imported/igmbji9ii8c1j5tn9dgqmu31dt.png-4ddeeb1938f196a2f92d4a91eba3d0f0.ctex"]
+source_file="res://Art/Player/Player_lil_red_monster/Player_lil_red_monster7.png"
+dest_files=["res://.godot/imported/Player_lil_red_monster7.png-b8002de598829275207adf567a45dc7a.ctex"]
 
 [params]
 
