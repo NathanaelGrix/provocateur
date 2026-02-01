@@ -137,7 +137,7 @@ shape = SubResource("RectangleShape2D_5aava")
 
 [node name="PlayerNear" type="Area2D" parent="." unique_id=106340579]
 position = Vector2(0, -0.5)
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNear" unique_id=1373140237]
 visible = false

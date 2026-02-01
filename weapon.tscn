@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dawcnkae0m2rf"]
 
-[ext_resource type="Script" path="res://weapon.gd" id="1_8xwfw"]
+[ext_resource type="Script" uid="uid://bxibix3hxr4q8" path="res://weapon.gd" id="1_8xwfw"]
 [ext_resource type="Texture2D" uid="uid://bdj0doc8h5kc" path="res://Art/Player/Player Attack/Seperate Attack Animation/Player Attack Animation1.png" id="2_iymim"]
 [ext_resource type="Script" uid="uid://bd883yoa1ayxt" path="res://hitArea2D.gd" id="2_o2wld"]
 [ext_resource type="Texture2D" uid="uid://bh2xmuf2o711g" path="res://Art/Player/Player Attack/Seperate Attack Animation/Player Attack Animation2.png" id="3_w0tex"]

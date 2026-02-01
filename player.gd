@@ -119,10 +119,10 @@ func start_attack():
 	if attack_ready:
 		is_attacking = true
 		attack_ready = false
-		print("attacking")
 		$weapon.rotation = global_position.angle_to_point(get_global_mouse_position())
 		$weapon/AnimatedSprite2D.visible = true
 		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = false
+		$weapon/AnimatedSprite2D/HitArea2D.already_hit.clear()
 		$weapon/AnimatedSprite2D.play("attack")
 		$AttackRechargeTimer.start()
 	
@@ -132,7 +132,6 @@ func _on_attack_recharge_timer_timeout():
 
 
 func _on_attack_finished():
-	print("Done Attacking")
 	is_attacking = false
 	$weapon/AnimatedSprite2D.visible = false
 	$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = true
