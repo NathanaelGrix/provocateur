@@ -59,13 +59,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
-	if Input.is_action_just_pressed("tempTurnAlien"):
-		faction = Faction.ALIEN	
-	if Input.is_action_just_pressed("tempTurnCowboy"):
-		faction = Faction.COWBOY
-	if Input.is_action_just_pressed("tempTurnPlayer"):
-		faction = Faction.PLAYER
-	
 	if Input.is_action_just_pressed("interact") and current_disguise_area != null:
 		faction = (current_disguise_area.get_parent() as Enemy).faction
 		current_disguise_area.get_parent().queue_free()
