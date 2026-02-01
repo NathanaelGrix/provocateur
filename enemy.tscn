@@ -254,7 +254,6 @@ script = ExtResource("4_epg4t")
 shape = SubResource("CircleShape2D_3yqyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452155158]
-position = Vector2(-2, -9)
 shape = SubResource("CapsuleShape2D_l1fjw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1767915388]
@@ -262,8 +261,9 @@ unique_name_in_owner = true
 path_desired_distance = 100.0
 target_desired_distance = 100.0
 path_postprocessing = 1
+simplify_path = true
 avoidance_enabled = true
-radius = 100.0
+radius = 150.0
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1819383763]
 script = ExtResource("4_iifgy")
@@ -277,5 +277,9 @@ metadata/_custom_type_script = "uid://cdo28580vtf37"
 wait_time = 3.0
 
 [node name="AudioStreamPlayer2D_Gun" type="AudioStreamPlayer2D" parent="." unique_id=983248045]
+
+[node name="Timer" type="Timer" parent="." unique_id=1759835768]
+wait_time = 3.5
+autostart = true
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
