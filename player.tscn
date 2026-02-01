@@ -197,6 +197,7 @@ sprite_frames = SubResource("SpriteFrames_331ug")
 animation = &"cowboyDisguise"
 
 [node name="HurtArea2D" type="Area2D" parent="AnimatedSprite2D" unique_id=2127694886]
+unique_name_in_owner = true
 script = ExtResource("18_5tmop")
 metadata/_custom_type_script = "uid://bs0srdqadorqt"
 
@@ -245,4 +246,6 @@ script = ExtResource("40_331ug")
 shape = SubResource("CircleShape2D_pgbbb")
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="area_entered" from="AnimatedSprite2D/HurtArea2D" to="." method="_on_hurt_area_2d_area_entered"]
+[connection signal="area_exited" from="AnimatedSprite2D/HurtArea2D" to="." method="_on_hurt_area_2d_area_exited"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]

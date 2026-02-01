@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyDetails" format=3 uid="uid://8aedimg1cpj4"]
+[gd_resource type="Resource" script_class="EnemyDetails" format=3 uid="uid://cgs8tqqotodkn"]
 
 [ext_resource type="AudioStream" uid="uid://nwbiiqni6yyo" path="res://Audio/SFXs/Enemies/Laser Gun 2.mp3" id="1_cuc3b"]
 [ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="1_n02au"]

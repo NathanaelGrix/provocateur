@@ -17,15 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://dbdw7a36vhv86" path="res://Art/Chalkboard.png" id="10_7l7f8"]
 [ext_resource type="PackedScene" uid="uid://ekby4tnm12xd" path="res://key.tscn" id="12_1ygvo"]
 [ext_resource type="Texture2D" uid="uid://c6f851s7wxvgu" path="res://Art/Number 4.png" id="12_dmidp"]
-[ext_resource type="PackedScene" path="res://start_room.tscn" id="12_gq61q"]
-[ext_resource type="PackedScene" path="res://room_1.tscn" id="13_u36aa"]
-[ext_resource type="PackedScene" path="res://room_2.tscn" id="14_dx6cf"]
+[ext_resource type="PackedScene" uid="uid://c4ccfvdt2350q" path="res://start_room.tscn" id="12_gq61q"]
+[ext_resource type="PackedScene" uid="uid://cjop1hxr1n2n1" path="res://room_1.tscn" id="13_u36aa"]
+[ext_resource type="PackedScene" uid="uid://ckw3oy2fo5bqe" path="res://room_2.tscn" id="14_dx6cf"]
 [ext_resource type="AudioStream" uid="uid://dc2ysxkbm4ysb" path="res://Audio/Music/mp3 Versions/1 Intro_ Get Provoked_ 4 Bar + 1Bar for overlap-120bpm Gm.mp3" id="14_e7grg"]
 [ext_resource type="PackedScene" uid="uid://elwf4meemdkb" path="res://chalkboard.tscn" id="15_3qa0k"]
 [ext_resource type="AudioStream" uid="uid://d2ordjdhhypfr" path="res://Audio/Music/mp3 Versions/A1 Sneaky_ Get Provoked_ 8 Bars 120bpm Gm.mp3" id="15_f6xqv"]
-[ext_resource type="PackedScene" path="res://room_3.tscn" id="15_i43pf"]
+[ext_resource type="PackedScene" uid="uid://c5p1t8dw2a88m" path="res://room_3.tscn" id="15_i43pf"]
 [ext_resource type="AudioStream" uid="uid://d34en1cfiygbk" path="res://Audio/Music/mp3 Versions/A2 Sneaky_ Get Provoked_ 8 Bars 120bpm Gm.mp3" id="16_4bs2e"]
-[ext_resource type="PackedScene" path="res://room_4.tscn" id="16_gvfwj"]
+[ext_resource type="PackedScene" uid="uid://6802dmhlr3qo" path="res://room_4.tscn" id="16_gvfwj"]
 [ext_resource type="AudioStream" uid="uid://b8apv6q1ytr6f" path="res://Audio/SFXs/Ambience/AMB Starting Room.wav" id="17_pphbs"]
 [ext_resource type="AudioStream" uid="uid://be0figsxav4so" path="res://Audio/Music/mp3 Versions/B1 Costume Aquired_Get Provoked_ 8 Bars 120bpm Gm.mp3" id="17_y0tqy"]
 [ext_resource type="AudioStream" uid="uid://dd1wyat2w3wi2" path="res://Audio/Music/mp3 Versions/C1 Fight_Provoked_ 8 Bars 120bpm Gm.mp3" id="18_5vjfb"]
@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://crdnqncfo7gu7" path="res://Art/Number 2.png" id="28_vssm6"]
 [ext_resource type="Texture2D" uid="uid://dqhgx5ub25onf" path="res://Art/Number 3.png" id="29_gh71b"]
 [ext_resource type="Resource" uid="uid://dfql542ls4c5e" path="res://cowboy_enemy_details.tres" id="35_dx6cf"]
-[ext_resource type="Resource" uid="uid://8aedimg1cpj4" path="res://alien_enemy_details.tres" id="36_i43pf"]
+[ext_resource type="Resource" uid="uid://cgs8tqqotodkn" path="res://alien_enemy_details.tres" id="36_i43pf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gq61q"]
 vertices = PackedVector2Array(4056, 2931, 4827.953, 3177.9766, 2475, 3175.0078, 3140, 2931, 4813.039, -241.03125, 4056, 2255, 4008, 1843, 4008, 1167, 3320, 675, 3320, 63, 2452, 675, 3092, 1167, 2475, 1113.8984, 1732.0313, 1043.8906, 1736.9609, -250.96094, 2452, 63, 3140, 2255, 3092, 1843)
@@ -2093,7 +2093,33 @@ position = Vector2(1294, -715)
 [node name="player" parent="." unique_id=1495105893 instance=ExtResource("1_4qc02")]
 position = Vector2(352, 230)
 
+[node name="Enemy" parent="." unique_id=1663597459 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(3949, 1347)
+enemy_details = ExtResource("35_dx6cf")
+navigation_region = NodePath("../TileMap/Room_1/NavigationRegion2D")
+
 [node name="AudioStreamPlayer2D_Ambience" type="AudioStreamPlayer" parent="." unique_id=1753247641]
 stream = ExtResource("17_pphbs")
 autoplay = true
 bus = &"SFXS Bus"
+
+[node name="Cowboy1" parent="." unique_id=1033205722 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(-209, 1885)
+enemy_details = ExtResource("35_dx6cf")
+navigation_region = NodePath("../TileMap/Room_2/NavigationRegion2D")
+
+[node name="Cowboy2" parent="." unique_id=1224765696 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(-2159, 306)
+enemy_details = ExtResource("35_dx6cf")
+navigation_region = NodePath("../TileMap/Room_3/NavigationRegion2D")
+
+[node name="Cowboy3" parent="." unique_id=186480601 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(1771, -2016)
+enemy_details = ExtResource("35_dx6cf")
+navigation_region = NodePath("../TileMap/Room_4/NavigationRegion2D")
+
+[node name="Alien" parent="." unique_id=1671375206 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(3969, 269)
+enemy_details = ExtResource("36_i43pf")
+navigation_region = NodePath("../TileMap/Room_1/NavigationRegion2D")
+faction = 3
