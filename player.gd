@@ -53,6 +53,7 @@ func _ready() -> void:
 	$DashTimer.timeout.connect(_on_dash_timer_timeout)
 	$DashCooldownTimer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	$weapon/AnimatedSprite2D.animation_finished.connect(_on_attack_finished)
+	health_component.health_depleted.connect(_kill_player)
 	
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -195,3 +196,9 @@ func _on_dash_timer_timeout():
 
 func _on_dash_cooldown_timer_timeout():
 	can_dash = true
+	
+# when the player dies just reset the scene
+func _kill_player() -> void:
+	if health_component.current_health <= 0:
+		if is_instance_valid(self):
+			get_tree().reload_current_scene()
