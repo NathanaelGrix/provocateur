@@ -3,6 +3,7 @@ extends Entity
 @export var navigation_region: NavigationRegion2D
 const SPEED: float = 50000
 var next_position: Vector2
+var bullet = preload("res://bullet.tscn")
 
 func _ready() -> void:
 	super()
@@ -11,6 +12,8 @@ func _ready() -> void:
 	health_component.health_depleted.connect(_kill_enemy)
 	
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("attack"):
+		create_bullet()
 	if !%NavigationAgent2D.is_navigation_finished():
 		next_position = %NavigationAgent2D.get_next_path_position()
 		velocity = global_position.direction_to(next_position).normalized() * SPEED * delta
@@ -18,6 +21,11 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	move_and_slide()
 
+func create_bullet():
+	var created_bullet = bullet.instantiate()
+	created_bullet.position = position
+	created_bullet.target_position = get_viewport().get_mouse_position()
+	get_tree().root.add_child(created_bullet)
 
 func _on_timer_timeout() -> void:
 	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1,false)
