@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bglp1thgrafle"]
+
+[ext_resource type="Script" uid="uid://y5pbtrwmsm7c" path="res://room.gd" id="1_88gup"]
+
+[node name="Room" type="Node2D" unique_id=28372452]
+script = ExtResource("1_88gup")
+
+[node name="Room" type="Node2D" parent="." unique_id=170991282]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1408318207]
+position = Vector2(305, 393.5)
+
+[node name="Darkness" type="ColorRect" parent="." unique_id=564530022]
+visible = false
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 1252.0
+offset_bottom = 1267.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
