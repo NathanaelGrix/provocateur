@@ -104,9 +104,11 @@ radius = 88.45903
 
 [node name="Player" type="CharacterBody2D" unique_id=1031007451 node_paths=PackedStringArray("visibility_component", "health_component") groups=["player"]]
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_7ahtn")
 visibility_component = NodePath("VisibilityComponent")
 health_component = NodePath("HealthComponent")
+faction = 1
 metadata/_custom_type_script = "uid://bsmjmjcwf80si"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009284766]

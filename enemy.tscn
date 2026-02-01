@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://batne5be13mlj" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://denk3hsutvrk3" path="res://Art/Cowboy/idle/Cowboy Idle Animation1.png" id="3_doop2"]
 [ext_resource type="Texture2D" uid="uid://2fvnf1bkhlyo" path="res://Art/Cowboy/idle/Cowboy Idle Animation2.png" id="4_5hcft"]
-[ext_resource type="Script" uid="uid://bs0srdqadorqt" path="res://hurtArea2D.gd" id="4_epg4t"]
+[ext_resource type="Script" path="res://hurtArea2D.gd" id="4_epg4t"]
 [ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="4_iifgy"]
 [ext_resource type="Texture2D" uid="uid://cvh7nm4aga11r" path="res://Art/Cowboy/idle/Cowboy Idle Animation3.png" id="5_nnovl"]
 [ext_resource type="Texture2D" uid="uid://db2s4kdbc2wag" path="res://Art/Cowboy/idle/Cowboy Idle Animation4.png" id="6_jmwgi"]
@@ -76,9 +76,11 @@ height = 224.0
 [node name="Enemy" type="CharacterBody2D" unique_id=918026956 node_paths=PackedStringArray("visibility_component", "health_component")]
 collision_layer = 4
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_4gyqm")
 visibility_component = NodePath("VisibilityComponent")
 health_component = NodePath("HealthComponent")
+faction = 2
 metadata/_custom_type_script = "uid://bsmjmjcwf80si"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485160209]
@@ -94,7 +96,6 @@ collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("4_epg4t")
-metadata/_custom_type_script = "uid://bs0srdqadorqt"
 
 [node name="HurtBox" type="CollisionShape2D" parent="AnimatedSprite2D/HurtArea2D" unique_id=2005937615]
 shape = SubResource("CircleShape2D_3yqyl")

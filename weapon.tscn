@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dawcnkae0m2rf"]
 
-[ext_resource type="Script" uid="uid://bxibix3hxr4q8" path="res://weapon.gd" id="1_8xwfw"]
+[ext_resource type="Script" path="res://weapon.gd" id="1_8xwfw"]
 [ext_resource type="Texture2D" uid="uid://c5tf4p3xyo5v3" path="res://Art/weapons/redBox.png" id="1_swcir"]
 [ext_resource type="Script" uid="uid://bd883yoa1ayxt" path="res://hitArea2D.gd" id="2_o2wld"]
 
@@ -91,7 +91,6 @@ collision_layer = 4
 collision_mask = 4
 monitorable = false
 script = ExtResource("2_o2wld")
-metadata/_custom_type_script = "uid://bd883yoa1ayxt"
 
 [node name="HitBox" type="CollisionShape2D" parent="AnimatedSprite2D/HitArea2D" unique_id=726334482]
 position = Vector2(-0.06666718, -0.03333359)

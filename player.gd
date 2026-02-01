@@ -31,6 +31,7 @@ var is_attacking := false
 var attack_ready := true
 
 func _ready() -> void:
+	super()
 	$AnimatedSprite2D.animation = "idle"
 	$AnimatedSprite2D.play()
 	pass
