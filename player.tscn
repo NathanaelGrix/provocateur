@@ -1,14 +1,8 @@
 [gd_scene format=3 uid="uid://caq5ekyd46sx5"]
 
 [ext_resource type="Script" uid="uid://dsq1tik2826ap" path="res://player.gd" id="1_7ahtn"]
-[ext_resource type="Texture2D" uid="uid://cjdppsljhrbcf" path="res://Art/Player/Player Attack/Player Attack1.png" id="2_5tmop"]
 [ext_resource type="AudioStream" uid="uid://bmhukq0x24qot" path="res://Audio/SFXs/Player/Player Steps.wav" id="2_7lmhl"]
-[ext_resource type="Texture2D" uid="uid://d3ehj0qeys0eb" path="res://Art/Player/Player Attack/Player Attack2.png" id="3_7ahtn"]
 [ext_resource type="AudioStream" uid="uid://bkgp8fjmeusod" path="res://Audio/SFXs/Player/Player_Dash.wav" id="3_dx0e4"]
-[ext_resource type="Texture2D" uid="uid://b64fc8kxjpxeu" path="res://Art/Player/Player Attack/Player Attack3.png" id="4_7lmhl"]
-[ext_resource type="Texture2D" uid="uid://dwns7ul8s8qpo" path="res://Art/Player/Player Attack/Player Attack4.png" id="5_dx0e4"]
-[ext_resource type="Texture2D" uid="uid://ct10ht0d6irvy" path="res://Art/Player/Player Attack/Player Attack5.png" id="6_jm5j8"]
-[ext_resource type="Texture2D" uid="uid://d4cgnxnrdf4yw" path="res://Art/Player/Player Attack/Player Attack6.png" id="7_7hik5"]
 [ext_resource type="Texture2D" uid="uid://bap543b6gfh1n" path="res://Art/Player/Player Idle/Player Idle1.png" id="8_qtqh7"]
 [ext_resource type="Texture2D" uid="uid://d07exxth5rkek" path="res://Art/Player/Player Idle/Player Idle2.png" id="9_2wuci"]
 [ext_resource type="Texture2D" uid="uid://cudn7oglxvujf" path="res://Art/Player/Player Dash.png" id="9_7lmhl"]
@@ -35,29 +29,6 @@ stream_0/stream = ExtResource("2_7lmhl")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_331ug"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_5tmop")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_7ahtn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_7lmhl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_dx0e4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_jm5j8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_7hik5")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 15.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("9_7lmhl")
@@ -151,7 +122,6 @@ script = ExtResource("21_5tmop")
 metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 
 [node name="weapon" parent="." unique_id=505119164 node_paths=PackedStringArray("parentEntity") instance=ExtResource("22_7ahtn")]
-position = Vector2(141, 0)
 parentEntity = NodePath("..")
 
 [node name="VisibilityComponent" type="Node2D" parent="." unique_id=153894449]
@@ -172,6 +142,5 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]
