@@ -1922,6 +1922,7 @@ position = Vector2(9, -14)
 position = Vector2(-30, 18)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap/Room_1" unique_id=71773217]
+position = Vector2(-32, -139)
 navigation_polygon = SubResource("NavigationPolygon_gq61q")
 
 [node name="Room_2" parent="TileMap" unique_id=1221198115 instance=ExtResource("14_dx6cf")]
@@ -1998,7 +1999,7 @@ position = Vector2(1294, -715)
 position = Vector2(352, 230)
 
 [node name="Enemy" parent="." unique_id=2086308516 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(3600, 1341)
+position = Vector2(4429, 1709)
 navigation_region = NodePath("../TileMap/Room_1/NavigationRegion2D")
 
 [node name="AudioStreamPlayer2D_Ambience" type="AudioStreamPlayer" parent="." unique_id=1753247641]

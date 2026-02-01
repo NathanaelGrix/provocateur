@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cq2j6etiaj4ys" path="res://Art/Floor Tile Basic 6.png" id="9_cym40"]
 [ext_resource type="Texture2D" uid="uid://bjmif2wycgodj" path="res://Art/Floor Tile Basic 5.png" id="10_15mti"]
 [ext_resource type="Texture2D" uid="uid://dbdw7a36vhv86" path="res://Art/Chalkboard.png" id="11_1hwwp"]
+[ext_resource type="Texture2D" uid="uid://ern53f3fqjkl" path="res://Art/Table 2.png" id="12_d3lpu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xkll"]
 texture = ExtResource("2_d3lpu")
@@ -1805,6 +1806,26 @@ offset_right = 2035.0
 offset_bottom = -725.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Table2" type="Sprite2D" parent="." unique_id=1684403481]
+position = Vector2(667, -1782)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("12_d3lpu")
+
+[node name="Table3" type="Sprite2D" parent="." unique_id=1993329996]
+position = Vector2(793, -2886.01)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("12_d3lpu")
+
+[node name="Table4" type="Sprite2D" parent="." unique_id=322388246]
+position = Vector2(3686.0002, -2864)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("12_d3lpu")
+
+[node name="Table5" type="Sprite2D" parent="." unique_id=1478796784]
+position = Vector2(3669.9998, -1602)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("12_d3lpu")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

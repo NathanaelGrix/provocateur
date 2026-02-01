@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bxahw37n320pj"]
+
+[ext_resource type="PackedScene" uid="uid://cdo34thi10jqi" path="res://table_2.tscn" id="1_qpos3"]
+[ext_resource type="Texture2D" uid="uid://hejruigj3ayb" path="res://Art/Table 1.png" id="2_f4ekr"]
+
+[node name="Table1" unique_id=1277304114 instance=ExtResource("1_qpos3")]
+
+[node name="Sprite2D" parent="." index="1" unique_id=882813710]
+texture = ExtResource("2_f4ekr")
