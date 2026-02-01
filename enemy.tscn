@@ -106,10 +106,11 @@ shape = SubResource("CapsuleShape2D_l1fjw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1767915388]
 unique_name_in_owner = true
-
-[node name="Timer" type="Timer" parent="." unique_id=101250029]
-wait_time = 5.0
-autostart = true
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 100.0
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1819383763]
 script = ExtResource("4_iifgy")
@@ -118,3 +119,6 @@ metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 [node name="VisibilityComponent" type="Node2D" parent="." unique_id=534113169]
 script = ExtResource("16_nnovl")
 metadata/_custom_type_script = "uid://cdo28580vtf37"
+
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+

@@ -6,24 +6,23 @@ var next_position: Vector2
 
 func _ready() -> void:
 	super()
-	await get_tree().process_frame
-	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1, false)
+	await get_tree().physics_frame
+	%NavigationAgent2D.target_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers, false)
 	health_component.health_depleted.connect(_kill_enemy)
 	
-func _process(delta: float) -> void:
-	if is_equal_approx(next_position.x, position.x) and is_equal_approx(next_position.y, position.y):
-		return
-	velocity = (next_position-position).normalized() * SPEED * delta
+func _physics_process(delta: float) -> void:
+	if !%NavigationAgent2D.is_navigation_finished():
+		next_position = %NavigationAgent2D.get_next_path_position()
+		velocity = global_position.direction_to(next_position).normalized() * SPEED * delta
+	else:
+		velocity = Vector2.ZERO
 	move_and_slide()
 
-func _on_timer_timeout() -> void:
-	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1,false)
-	
 # kill the enemy if it has lost all of it's health
 func _kill_enemy() -> void:
 	if health_component.current_health <= 0:
 		if is_instance_valid(self):
-			pass
-			# don't kill the enemy yet as there is code that will crash when the
-			#  enemy deloads
 			queue_free()
+
+func _on_navigation_agent_2d_navigation_finished() -> void:
+	%NavigationAgent2D.target_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers, false)
