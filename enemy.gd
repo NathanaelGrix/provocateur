@@ -1,7 +1,7 @@
 extends Entity
 @export var enemy_details: EnemyDetails
 @export var navigation_region: NavigationRegion2D
-const SPEED: float = 50000
+const SPEED: float = 20000
 var next_position: Vector2
 var bullet = preload("res://bullet.tscn")
 var state: State
@@ -12,14 +12,17 @@ enum State{
 	IDLE
 }
 
+
 func _ready() -> void:
 	super()
 	await get_tree().physics_frame
 	change_state(State.MOVING)
 	%NavigationAgent2D.target_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers, false)
 	health_component.health_depleted.connect(_kill_enemy)
+	$Timer.timeout.connect(_on_timer_timeout)
 	$AttackCooldownTimer.timeout.connect(_on_attack_off_cooldown)
-	
+
+
 func _physics_process(delta: float) -> void:
 	super(delta)
 	if state == State.MOVING:
@@ -31,10 +34,15 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
-		
+	set_animation()
+	move_and_slide()
 
 
 func create_bullet():
+	if enemy_details and enemy_details.gunshot_sound:
+		$AudioStreamPlayer2D_Gun.stream = enemy_details.gunshot_sound
+		$AudioStreamPlayer2D_Gun.play()
+	
 	var created_bullet = bullet.instantiate()
 	created_bullet.parentEntity = self
 	created_bullet.target_position = aggro_target.global_position
@@ -51,6 +59,8 @@ func _on_attack_off_cooldown() -> void:
 
 
 func update_aggro_target() -> void:
+	if state == State.DEAD:
+		return
 	super()
 	$AttackCooldownTimer.start(1)
 
@@ -61,19 +71,30 @@ func _on_timer_timeout() -> void:
 func change_state(local_state: State):
 	match local_state:
 		State.MOVING:
-			%AnimatedSprite2D.animation = "walk"
+			%AnimatedSprite2D.animation = enemy_details.walk_animation
 			%AnimatedSprite2D.play()
 		State.DEAD:
-			%AnimatedSprite2D.animation = "dead"
+			%AnimatedSprite2D.animation = enemy_details.dead_animation
 			%AnimatedSprite2D.play()
 			aggro_target = null
 			$AttackCooldownTimer.paused = true
 			health_component.visible = false
 		State.IDLE:
-			%AnimatedSprite2D.animation = "idle"
+			%AnimatedSprite2D.animation = enemy_details.idle_animation
 			%AnimatedSprite2D.play()
 	state = local_state
-	
+
+
+#Not sure how to set it up to play proper animations - Sam
+func set_animation():
+	if enemy_details == null or state == State.DEAD:
+		return
+	if velocity.length() > 0:
+		$AnimatedSprite2D.play(enemy_details.walk_animation)
+	else:
+		$AnimatedSprite2D.play(enemy_details.idle_animation)
+
+
 # kill the enemy if it has lost all of it's health
 func _kill_enemy() -> void:
 	if health_component.current_health <= 0:

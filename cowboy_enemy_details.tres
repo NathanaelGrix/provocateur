@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyDetails" format=3 uid="uid://dfql542ls4c5e"]
+
+[ext_resource type="AudioStream" uid="uid://c2kml883imu3i" path="res://Audio/SFXs/Enemies/Pistol Cowboy.wav" id="1_fpeqp"]
+[ext_resource type="Script" uid="uid://d2itsf05pdx37" path="res://enemy_details.gd" id="1_oq8p0"]
+
+[resource]
+script = ExtResource("1_oq8p0")
+idle_animation = "cowboy_idle"
+walk_animation = "cowboy_walk"
+dead_animation = "cowboy_dead"
+gunshot_sound = ExtResource("1_fpeqp")
+metadata/_custom_type_script = "uid://d2itsf05pdx37"
