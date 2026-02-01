@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwlmq8g6xx68g"
+path="res://.godot/imported/D End_Get Provoked_4 Bars Gm 120bpm.mp3-2b3edc228ec4b469c1f5465fad8f8934.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/mp3 Versions/D End_Get Provoked_4 Bars Gm 120bpm.mp3"
+dest_files=["res://.godot/imported/D End_Get Provoked_4 Bars Gm 120bpm.mp3-2b3edc228ec4b469c1f5465fad8f8934.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=120.0
+beat_count=0
+bar_beats=4

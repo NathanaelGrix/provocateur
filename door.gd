@@ -38,6 +38,7 @@ func open_door():
 	if blocker:
 		blocker.disabled = true
 	$AnimatedSprite2D.play("door animation")
+	$AudioStreamPlayer.play()
 	
 	auto_close_timer.stop()
 	auto_close_timer.start()
@@ -47,6 +48,7 @@ func close_door():
 	if blocker:
 		blocker.disabled = false
 	$AnimatedSprite2D.play_backwards("door animation")
+	$AudioStreamPlayer.play()
 	
 func unlock(show_indicator := true):
 	is_locked = false
