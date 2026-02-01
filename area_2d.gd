@@ -8,4 +8,10 @@ func _ready() -> void:
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		get_node(controller).unlock_next_door()
-		queue_free()
+		$AudioStreamPlayer.play()
+		$AnimatedSprite2D.hide()
+		$CollisionShape2D.queue_free()
+
+
+func _on_audio_stream_player_finished():
+	queue_free()

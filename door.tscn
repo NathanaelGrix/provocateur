@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://buqvgqrwfl544" path="res://Art/Arrow/Red Arrow Animation5.png" id="18_ll3j0"]
 [ext_resource type="Texture2D" uid="uid://cb05gd8rl81ib" path="res://Art/Arrow/Red Arrow Animation6.png" id="19_ylx8e"]
 [ext_resource type="Texture2D" uid="uid://nedir2shm3r5" path="res://Art/Arrow/Red Arrow Animation7.png" id="20_sep0j"]
+[ext_resource type="AudioStream" uid="uid://c0c18ynkn0lxq" path="res://Audio/SFXs/Door Open and Close.wav" id="21_urtda"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aljf4"]
 animations = [{
@@ -147,6 +148,11 @@ debug_color = Color(0.9104701, 0.19811219, 0.5588026, 0.41960785)
 [node name="AutoCloseDoorTimer" type="Timer" parent="." unique_id=442840665]
 wait_time = 3.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1152472177]
+stream = ExtResource("21_urtda")
+volume_db = -4.415
+bus = &"SFXS Bus"
 
 [connection signal="body_entered" from="PlayerNear" to="." method="_on_player_near_body_entered"]
 [connection signal="body_exited" from="PlayerNear" to="." method="_on_player_near_body_exited"]

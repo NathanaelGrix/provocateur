@@ -4,13 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cjdppsljhrbcf" path="res://Art/Player/Player Attack/Player Attack1.png" id="2_5tmop"]
 [ext_resource type="AudioStream" uid="uid://bmhukq0x24qot" path="res://Audio/SFXs/Player/Player Steps.wav" id="2_7lmhl"]
 [ext_resource type="Texture2D" uid="uid://d3ehj0qeys0eb" path="res://Art/Player/Player Attack/Player Attack2.png" id="3_7ahtn"]
-[ext_resource type="AudioStream" uid="uid://clm4qlointu2u" path="res://Audio/SFXs/Player/Player Taser.wav" id="3_dx0e4"]
+[ext_resource type="AudioStream" uid="uid://bkgp8fjmeusod" path="res://Audio/SFXs/Player/Player_Dash.wav" id="3_dx0e4"]
 [ext_resource type="Texture2D" uid="uid://b64fc8kxjpxeu" path="res://Art/Player/Player Attack/Player Attack3.png" id="4_7lmhl"]
 [ext_resource type="Texture2D" uid="uid://dwns7ul8s8qpo" path="res://Art/Player/Player Attack/Player Attack4.png" id="5_dx0e4"]
 [ext_resource type="Texture2D" uid="uid://ct10ht0d6irvy" path="res://Art/Player/Player Attack/Player Attack5.png" id="6_jm5j8"]
 [ext_resource type="Texture2D" uid="uid://d4cgnxnrdf4yw" path="res://Art/Player/Player Attack/Player Attack6.png" id="7_7hik5"]
 [ext_resource type="Texture2D" uid="uid://bap543b6gfh1n" path="res://Art/Player/Player Idle/Player Idle1.png" id="8_qtqh7"]
 [ext_resource type="Texture2D" uid="uid://d07exxth5rkek" path="res://Art/Player/Player Idle/Player Idle2.png" id="9_2wuci"]
+[ext_resource type="Texture2D" uid="uid://cudn7oglxvujf" path="res://Art/Player/Player Dash.png" id="9_7lmhl"]
 [ext_resource type="Texture2D" uid="uid://c5dpgb8lbs0hi" path="res://Art/Player/Player Idle/Player Idle3.png" id="10_iruf7"]
 [ext_resource type="Texture2D" uid="uid://djkigdks6h65n" path="res://Art/Player/Player Idle/Player Idle4.png" id="11_j5n4i"]
 [ext_resource type="Texture2D" uid="uid://c81pkrsku6pi7" path="res://Art/Player/Player Idle/Player Idle5.png" id="12_634y6"]
@@ -23,6 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://3rqg4a5fmjg0" path="res://Art/Player/Player Move/Player Move5.png" id="19_b88wv"]
 [ext_resource type="Texture2D" uid="uid://m3btxrn257q2" path="res://Art/Player/Player Move/Player Move6.png" id="20_pgbbb"]
 [ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="21_5tmop"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7ahtn"]
+random_pitch = 1.2599211
+random_volume_offset_db = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("2_7lmhl")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_331ug"]
 animations = [{
@@ -48,6 +55,14 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_7lmhl")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -105,8 +120,8 @@ radius = 88.45903
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=841059074 groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_4flbx")
-sfx_player_footstep = ExtResource("2_7lmhl")
-sfx_player_attack = ExtResource("3_dx0e4")
+sfx_player_footstep = SubResource("AudioStreamRandomizer_7ahtn")
+sfx_player_dash = ExtResource("3_dx0e4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009284766]
 position = Vector2(-1, -2)
@@ -128,9 +143,22 @@ zoom = Vector2(0.25, 0.25)
 script = ExtResource("21_5tmop")
 metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 
-[node name="player_sfxs" type="AudioStreamPlayer2D" parent="." unique_id=1358471192]
+[node name="PlayerDashSFX" type="AudioStreamPlayer2D" parent="." unique_id=1640526617]
+
+[node name="PlayerFootstepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1358471192]
+volume_db = -12.0
 bus = &"SFXS Bus"
+
+[node name="DashTimer" type="Timer" parent="." unique_id=890235180]
+wait_time = 0.4
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="." unique_id=389120511]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]

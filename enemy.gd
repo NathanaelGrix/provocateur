@@ -17,3 +17,11 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1,false)
 	
+#Not sure how to set it up to play proper animations - Sam
+func set_animation():
+	if velocity != Vector2.ZERO:
+		$AnimatedSprite2D.animation("walk")
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.animation("idle")
+		$AnimatedSprite2D.play()

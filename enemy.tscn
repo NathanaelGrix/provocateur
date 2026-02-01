@@ -81,9 +81,8 @@ enemy_details = SubResource("Resource_iifgy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485160209]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qku5p")
-animation = &"idle"
-frame = 3
-frame_progress = 0.4359787
+animation = &"walk"
+frame_progress = 0.41696292
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452155158]
 position = Vector2(-2, -9)
