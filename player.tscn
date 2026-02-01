@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://caq5ekyd46sx5"]
 
-[ext_resource type="Script" uid="uid://dsq1tik2826ap" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://dsq1tik2826ap" path="res://player.gd" id="1_7ahtn"]
 [ext_resource type="Texture2D" uid="uid://cjdppsljhrbcf" path="res://Art/Player/Player Attack/Player Attack1.png" id="2_5tmop"]
 [ext_resource type="AudioStream" uid="uid://bmhukq0x24qot" path="res://Audio/SFXs/Player/Player Steps.wav" id="2_7lmhl"]
 [ext_resource type="Texture2D" uid="uid://d3ehj0qeys0eb" path="res://Art/Player/Player Attack/Player Attack2.png" id="3_7ahtn"]
@@ -24,8 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://3rqg4a5fmjg0" path="res://Art/Player/Player Move/Player Move5.png" id="19_b88wv"]
 [ext_resource type="Texture2D" uid="uid://m3btxrn257q2" path="res://Art/Player/Player Move/Player Move6.png" id="20_pgbbb"]
 [ext_resource type="Script" uid="uid://b8v4ilgshdbbt" path="res://components/health_component.gd" id="21_5tmop"]
+[ext_resource type="PackedScene" uid="uid://dawcnkae0m2rf" path="res://weapon.tscn" id="22_7ahtn"]
+[ext_resource type="Script" uid="uid://cdo28580vtf37" path="res://components/visibility_component.gd" id="23_7lmhl"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7ahtn"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7hik5"]
 random_pitch = 1.2599211
 random_volume_offset_db = 1.5
 streams_count = 1
@@ -117,17 +119,22 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 88.45903
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=841059074 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1031007451 node_paths=PackedStringArray("visibility_component", "health_component") groups=["player"]]
 collision_mask = 3
-script = ExtResource("1_4flbx")
-sfx_player_footstep = SubResource("AudioStreamRandomizer_7ahtn")
+motion_mode = 1
+script = ExtResource("1_7ahtn")
+sfx_player_footstep = SubResource("AudioStreamRandomizer_7hik5")
 sfx_player_dash = ExtResource("3_dx0e4")
+visibility_component = NodePath("VisibilityComponent")
+health_component = NodePath("HealthComponent")
+faction = 1
+metadata/_custom_type_script = "uid://bsmjmjcwf80si"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009284766]
 position = Vector2(-1, -2)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_331ug")
-animation = &"move"
+animation = &"dash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1950049712]
 position = Vector2(-5, -6)
@@ -143,22 +150,28 @@ zoom = Vector2(0.25, 0.25)
 script = ExtResource("21_5tmop")
 metadata/_custom_type_script = "uid://b8v4ilgshdbbt"
 
-[node name="PlayerDashSFX" type="AudioStreamPlayer2D" parent="." unique_id=1640526617]
+[node name="weapon" parent="." unique_id=505119164 node_paths=PackedStringArray("parentEntity") instance=ExtResource("22_7ahtn")]
+position = Vector2(141, 0)
+parentEntity = NodePath("..")
 
-[node name="PlayerFootstepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1358471192]
+[node name="VisibilityComponent" type="Node2D" parent="." unique_id=153894449]
+script = ExtResource("23_7lmhl")
+metadata/_custom_type_script = "uid://cdo28580vtf37"
+
+[node name="PlayerDashSFX" type="AudioStreamPlayer2D" parent="." unique_id=436801329]
+
+[node name="PlayerFootstepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1380688733]
 volume_db = -12.0
 bus = &"SFXS Bus"
 
-[node name="DashTimer" type="Timer" parent="." unique_id=890235180]
+[node name="DashTimer" type="Timer" parent="." unique_id=555058405]
 wait_time = 0.4
 one_shot = true
 
-[node name="DashCooldownTimer" type="Timer" parent="." unique_id=389120511]
+[node name="DashCooldownTimer" type="Timer" parent="." unique_id=976653689]
 wait_time = 5.0
 one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
-[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]

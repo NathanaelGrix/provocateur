@@ -20,7 +20,7 @@ func _on_state_changed(state: GameState.State) -> void:
 			_play_end()
 
 func _play_intro():
-	music.switch_to_clip_by_name(&"intro")
+	music.switch_to_clip_by_name(&"Intro")
 
 func _play_sneaky():
 	music.switch_to_clip_by_name(&"Sneaky")

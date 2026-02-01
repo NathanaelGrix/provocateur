@@ -67,6 +67,7 @@ func process_id_arr(id_arr: Array) -> void:
 	detector.global_position = first_component.global_position
 	detector.target_position = detector.to_local(second_component.global_position)
 	detector.force_raycast_update()
+	var detected_distance = (first_component.global_position - second_component.global_position).length()
 	var was_previously_visible = is_visible_mapping[first_id][IS_VISIBLE].has(second_id)
 	# Only modify the state if actually necessary
 	if detector.is_colliding() and was_previously_visible:
@@ -74,9 +75,9 @@ func process_id_arr(id_arr: Array) -> void:
 		is_visible_mapping[second_id][NOT_VISIBLE][first_id] = true
 		is_visible_mapping[first_id][IS_VISIBLE].erase(second_id)
 		is_visible_mapping[second_id][IS_VISIBLE].erase(first_id)
-	elif not detector.is_colliding() and not was_previously_visible:
-		is_visible_mapping[first_id][IS_VISIBLE][second_id] = true
-		is_visible_mapping[second_id][IS_VISIBLE][first_id] = true
+	elif not detector.is_colliding():
+		is_visible_mapping[first_id][IS_VISIBLE][second_id] = detected_distance
+		is_visible_mapping[second_id][IS_VISIBLE][first_id] = detected_distance
 		is_visible_mapping[first_id][NOT_VISIBLE].erase(second_id)
 		is_visible_mapping[second_id][NOT_VISIBLE].erase(first_id)
 
@@ -90,6 +91,8 @@ func register_visibility_component(new_component: VisibilityComponent) -> void:
 		is_visible_mapping[other_id][NOT_VISIBLE][new_component.visibility_id] = true
 		last_updated[0].append([other_id, new_component.visibility_id])
 	visible_components[new_component.visibility_id] = new_component
+	var cleanup_callable = Callable(self, "_on_component_exiting").bind(new_component)
+	new_component.tree_exiting.connect(cleanup_callable)
 
 
 func is_line_of_sight_between(first_entity: Entity, second_entity: Entity) -> bool:
@@ -99,4 +102,32 @@ func is_line_of_sight_between(first_entity: Entity, second_entity: Entity) -> bo
 
 
 func get_all_entities_visible_to(entity: Entity) -> Array:
-	return is_visible_mapping[entity.visibility_component.visibility_id][IS_VISIBLE].keys()
+	var visible_ids = is_visible_mapping[entity.visibility_component.visibility_id][IS_VISIBLE].keys()
+	return visible_ids.map(func (visibility_id): return visible_components[visibility_id].parent_entity)
+
+
+## Looks at all the entities visible from the given entity. Then filters for only the visible
+## entities which belong to a faction the given entity is aggro against. Returns the closest
+## entity among those.
+func get_nearest_aggroed_entity(from_entity: Entity) -> Entity:
+	var min_distance = null
+	var nearest_entity = null
+	for other_id in is_visible_mapping[from_entity.visibility_component.visibility_id][IS_VISIBLE].keys():
+		# If this other ID is an entity from a faction the from_entity is aggro'd against
+		if from_entity.aggro_against_factions[visible_components[other_id].parent_entity.faction]:
+			var distance = is_visible_mapping[from_entity.visibility_component.visibility_id][IS_VISIBLE][other_id]
+			if min_distance == null or distance < min_distance:
+				nearest_entity = visible_components[other_id].parent_entity
+				min_distance = distance
+	return nearest_entity
+
+
+func _on_component_exiting(component: VisibilityComponent) -> void:
+	is_visible_mapping.erase(component.visibility_id)
+	for other_id in visible_components.keys():
+		if other_id != component.visibility_id:
+			is_visible_mapping[other_id][NOT_VISIBLE].erase(component.visibility_id)
+			is_visible_mapping[other_id][IS_VISIBLE].erase(component.visibility_id)
+	for tick in last_updated.keys():
+		last_updated[tick] = last_updated[tick].filter(func (id_arr): return not component.visibility_id in id_arr)
+	visible_components.erase(component.visibility_id)

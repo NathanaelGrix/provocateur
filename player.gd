@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 const SPEED:float = 50000
 
 @export var dash_speed := 2000.0
@@ -19,6 +19,7 @@ var foot_step_frames : Array = [4]
 var state: PlayerState = PlayerState.IDLE
 
 func change_state(new_state: PlayerState) -> void:
+	#print("new_state: ", new_state)
 	if state == new_state:
 		return
 		
@@ -42,9 +43,11 @@ var is_attacking := false
 var attack_ready := true
 
 func _ready() -> void:
+	super()
 	$AnimatedSprite2D.animation = "idle"
 	$AnimatedSprite2D.play()
-	pass
+	$DashTimer.timeout.connect(_on_dash_timer_timeout)
+	$DashCooldownTimer.timeout.connect(_on_dash_cooldown_timer_timeout)
 	
 func _process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -119,6 +122,9 @@ func start_attack():
 	if attack_ready:
 		is_attacking = true
 		attack_ready = false
+		print("attacking")
+		$weapon/AnimatedSprite2D.visible = true
+		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = false
 		$AnimatedSprite2D.play("attack")
 		$AttackRechargeTimer.start()
 	
@@ -130,7 +136,10 @@ func _on_attack_recharge_timer_timeout():
 
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "attack":
+		print("Done Attacking")
 		is_attacking = false
+		$weapon/AnimatedSprite2D.visible = false
+		$weapon/AnimatedSprite2D/HitArea2D/HitBox.disabled = true
 		if velocity != Vector2.ZERO:
 			$AnimatedSprite2D.play("move")
 		else:
