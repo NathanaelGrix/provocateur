@@ -56,7 +56,7 @@ func update_aggro_target() -> void:
 
 
 func _on_timer_timeout() -> void:
-	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),1,false)
+	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers,false)
 
 func change_state(local_state: State):
 	match local_state:

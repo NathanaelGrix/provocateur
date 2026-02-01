@@ -123,7 +123,7 @@ unique_name_in_owner = true
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qku5p")
 animation = &"dead"
-frame_progress = 0.35035408
+frame_progress = 0.20392586
 
 [node name="HurtArea2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1774631892]
 scale = Vector2(0.25, 0.25)
@@ -136,7 +136,6 @@ script = ExtResource("4_epg4t")
 shape = SubResource("CircleShape2D_3yqyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452155158]
-position = Vector2(-2, -9)
 shape = SubResource("CapsuleShape2D_l1fjw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1767915388]
@@ -144,8 +143,9 @@ unique_name_in_owner = true
 path_desired_distance = 100.0
 target_desired_distance = 100.0
 path_postprocessing = 1
+simplify_path = true
 avoidance_enabled = true
-radius = 100.0
+radius = 150.0
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1819383763]
 script = ExtResource("4_iifgy")
@@ -158,4 +158,9 @@ metadata/_custom_type_script = "uid://cdo28580vtf37"
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=526806068]
 wait_time = 3.0
 
+[node name="Timer" type="Timer" parent="." unique_id=600237587]
+wait_time = 3.5
+autostart = true
+
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
