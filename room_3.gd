@@ -4,6 +4,8 @@ extends Node2D
 @onready var darkness2 := $Darkness2
 @onready var tween := create_tween()
 
+var explored := false
+
 func  _ready():
 	darkness.visible = true
 	darkness2.visible = true
@@ -20,15 +22,17 @@ func _on_area_2d_body_exited(body):
 		hide_room()
 		
 func reveal():
+	explored = true
 	if tween: tween.kill()
 	tween = create_tween()
 
 	tween.tween_property(darkness, "modulate:a", 0.0, 0.4)
 	tween.parallel().tween_property(darkness2, "modulate:a", 0.0, 0.4)
-
+	
 func hide_room():
-	if tween: tween.kill()
-	tween = create_tween()
+	if explored:
+		tween.kill()
+		tween = create_tween()
 
-	tween.tween_property(darkness, "modulate:a", 1.0, 0.4)
-	tween.parallel().tween_property(darkness2, "modulate:a", 1.0, 0.4)
+		tween.tween_property(darkness, "modulate:a", 0.6, 0.4)
+		tween.parallel().tween_property(darkness2, "modulate:a", 0.6, 0.4)
