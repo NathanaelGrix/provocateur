@@ -226,6 +226,9 @@ radius = 114.15778
 radius = 112.0
 height = 224.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_18rq2"]
+radius = 244.01845
+
 [node name="Enemy" type="CharacterBody2D" unique_id=918026956 node_paths=PackedStringArray("visibility_component", "health_component")]
 collision_layer = 4
 collision_mask = 3
@@ -254,6 +257,7 @@ script = ExtResource("4_epg4t")
 shape = SubResource("CircleShape2D_3yqyl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1452155158]
+unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_l1fjw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1767915388]
@@ -281,6 +285,13 @@ wait_time = 3.0
 [node name="Timer" type="Timer" parent="." unique_id=1759835768]
 wait_time = 3.5
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1552069633 groups=["pickup_area"]]
+
+[node name="PickupBox" type="CollisionShape2D" parent="Area2D" unique_id=1377867147]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_18rq2")
+disabled = true
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -7,6 +7,7 @@ var is_dashing := false
 var can_dash := true
 var last_direction := Vector2.RIGHT
 var dash_direction := Vector2.ZERO
+var current_disguise_area:Area2D = null
 
 
 enum PlayerState {IDLE, MOVE, DASH, COWBOY, ALIEN}
@@ -65,6 +66,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("tempTurnPlayer"):
 		faction = Faction.PLAYER
 	
+	if Input.is_action_just_pressed("interact") and current_disguise_area != null:
+		faction = (current_disguise_area.get_parent() as Enemy).faction
+		current_disguise_area.get_parent().queue_free()
+		check_overlapping_pickup_areas()
+		
 	if Input.is_action_just_pressed("dash") and can_dash:
 		$PlayerDashSFX.stream = sfx_player_dash
 		$PlayerDashSFX.play()
@@ -202,3 +208,19 @@ func _kill_player() -> void:
 	if health_component.current_health <= 0:
 		if is_instance_valid(self):
 			get_tree().reload_current_scene()
+
+func _on_hurt_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("pickup_area"):
+		current_disguise_area = area
+		
+
+func _on_hurt_area_2d_area_exited(area: Area2D) -> void:
+	check_overlapping_pickup_areas()
+
+func check_overlapping_pickup_areas():
+	for overlapping_area in %HurtArea2D.get_overlapping_areas():
+		if (overlapping_area as Area2D).is_in_group("pickup_area"):
+			current_disguise_area = overlapping_area
+			break
+		else:
+			current_disguise_area = null
