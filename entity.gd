@@ -17,6 +17,7 @@ enum Faction {
 var entity_id: int = -1
 var aggro_against_factions: Dictionary[Faction, bool] = {}
 var aggro_target: Entity = null
+var aggro_timer: Timer
 
 
 func _ready() -> void:
@@ -27,9 +28,18 @@ func _ready() -> void:
 	assert(visibility_component != null, "All entities must have a health component! Make sure to assign it to the \"health_component\" variable")
 	assert(faction != Faction.NOT_SET, "You must set a faction alliance for all entities!")
 	visibility_component.assign_parent_entity(self)
+	if faction != Faction.PLAYER:
+		aggro_timer = Timer.new()
+		aggro_timer.wait_time = 7
+		add_child(aggro_timer)
+		aggro_timer.start()
+		aggro_timer.timeout.connect(_on_aggro_timeout)
 
 
 func _physics_process(_delta: float) -> void:
+	if aggro_target != null and aggro_target.state == Enemy.State.DEAD:
+		update_aggro_target()
+		return
 	if aggro_target != null and aggro_target.is_inside_tree():
 		return
 	if aggro_against_factions.keys().filter(func (fac): return aggro_against_factions[fac]).is_empty():
@@ -37,10 +47,22 @@ func _physics_process(_delta: float) -> void:
 	update_aggro_target()
 
 
+func is_aggro_against_any_faction() -> bool:
+	for fac in aggro_against_factions.keys():
+		if aggro_against_factions[fac]:
+			return true
+	return false
+
+
 func update_aggro_target() -> void:
+	if not is_aggro_against_any_faction():
+		return
 	aggro_target = Visibility.get_nearest_aggroed_entity(self)
-	print("aggro target updating!", aggro_target)
 	if aggro_target == null:
 		# If there are no targets visible, reset aggro
 		for fac in aggro_against_factions.keys():
 			aggro_against_factions[fac] = false
+
+
+func _on_aggro_timeout() -> void:
+	update_aggro_target()

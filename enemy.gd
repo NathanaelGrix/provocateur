@@ -1,4 +1,4 @@
-extends Entity
+class_name Enemy extends Entity
 @export var enemy_details: EnemyDetails
 @export var navigation_region: NavigationRegion2D
 const SPEED: float = 20000
