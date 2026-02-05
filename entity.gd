@@ -1,5 +1,6 @@
 class_name Entity extends CharacterBody2D
 
+@export var room_id: String = ""
 
 enum Faction {
 	NOT_SET,
@@ -19,6 +20,7 @@ var aggro_against_factions: Dictionary[Faction, bool] = {}
 var aggro_target: Entity = null
 var aggro_timer: Timer
 
+var was_in_combat := false
 
 func _ready() -> void:
 	entity_id = IdGenerator.generate_entity_id()
@@ -56,13 +58,34 @@ func is_aggro_against_any_faction() -> bool:
 
 func update_aggro_target() -> void:
 	if not is_aggro_against_any_faction():
+		exit_combat()
 		return
+		
 	aggro_target = Visibility.get_nearest_aggroed_entity(self)
+	
 	if aggro_target == null:
+		exit_combat()
 		# If there are no targets visible, reset aggro
-		for fac in aggro_against_factions.keys():
-			aggro_against_factions[fac] = false
+		#for fac in aggro_against_factions.keys():
+			#aggro_against_factions[fac] = false
 
 
 func _on_aggro_timeout() -> void:
 	update_aggro_target()
+
+
+func exit_combat():
+	if not was_in_combat:
+		return
+		
+	was_in_combat = false
+	aggro_target = null
+
+	for fac in aggro_against_factions.keys():
+		aggro_against_factions[fac] = false
+
+	if aggro_timer:
+		aggro_timer.stop()
+
+	SignalBus.entity_exited_combat.emit(self)
+	

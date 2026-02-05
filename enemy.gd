@@ -2,10 +2,16 @@ class_name Enemy extends Entity
 
 @export var enemy_details: EnemyDetails
 @export var navigation_region: NavigationRegion2D
+@export var drop_key_on_death: PackedScene
+
+@export var room_controller: NodePath
+
 const SPEED: float = 20000
 var next_position: Vector2
 var bullet = preload("res://bullet.tscn")
 var state: State
+
+
 
 enum State{
 	MOVING,
@@ -16,9 +22,12 @@ enum State{
 
 func _ready() -> void:
 	super()
+	add_to_group("enemies")
 	await get_tree().physics_frame
 	change_state(State.MOVING)
+	
 	%NavigationAgent2D.target_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers, false)
+	
 	health_component.health_depleted.connect(_kill_enemy)
 	$Timer.timeout.connect(_on_timer_timeout)
 	$AttackCooldownTimer.timeout.connect(_on_attack_off_cooldown)
@@ -62,9 +71,25 @@ func _on_attack_off_cooldown() -> void:
 func update_aggro_target() -> void:
 	if state == State.DEAD:
 		return
+		
 	super()
-	$AttackCooldownTimer.start(1)
+	
+	if aggro_target == null:
+		exit_combat()
+	else:
+		$AttackCooldownTimer.start(1)
 
+
+func exit_combat():
+	aggro_target = null
+	$AttackCooldownTimer.stop()
+	
+	for faction in aggro_against_factions.keys():
+		aggro_against_factions[faction] = false
+	
+	change_state(State.MOVING)
+	
+	SignalBus.enemy_exited_combat.emit(self)
 
 func _on_timer_timeout() -> void:
 	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers,false)
@@ -100,9 +125,25 @@ func set_animation():
 
 # kill the enemy if it has lost all of it's health
 func _kill_enemy() -> void:
+	if state == State.DEAD:
+		return
+		
 	if health_component.current_health <= 0:
 		if is_instance_valid(self):
+			print("Enemy died:", name)
+			print("Drop key scene:", drop_key_on_death)
 			change_state(State.DEAD)
+			
+			if drop_key_on_death:
+				print("Enemy died. Drop key:", drop_key_on_death)
+				var key = drop_key_on_death.instantiate()
+				key.global_position = global_position
+				key.controller = get_node(room_controller).get_path()
+				get_tree().current_scene.add_child(key)
+				print("Key spawned at:", global_position)
+				
+				
+				drop_key_on_death = null
 			
 
 func _on_navigation_agent_2d_navigation_finished() -> void:

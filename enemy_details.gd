@@ -8,6 +8,8 @@ extends Resource
 @export var attack_type: AttackType
 @export_range(1,100) var attack_speed: int
 
+#in future add different animations for bullets and maybe variation in attack style per enemey
+
 enum AttackType{
 	MELEE,
 	RANGED

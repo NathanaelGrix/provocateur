@@ -4,6 +4,9 @@ extends Node2D
 @onready var darkness2 := $Darkness2
 @onready var tween := create_tween()
 
+@export var room_id: String
+@export var keycard_scene: PackedScene
+
 var explored := false
 
 func  _ready():
@@ -11,6 +14,8 @@ func  _ready():
 	darkness2.visible = true
 	darkness.modulate.a = 1.0
 	darkness2.modulate.a = 1.0
+	
+	await  get_tree().process_frame
 	
 
 func _on_area_2d_body_entered(body):

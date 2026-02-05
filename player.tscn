@@ -40,6 +40,8 @@
 [ext_resource type="PackedScene" uid="uid://dawcnkae0m2rf" path="res://weapon.tscn" id="22_7ahtn"]
 [ext_resource type="Script" uid="uid://cdo28580vtf37" path="res://components/visibility_component.gd" id="23_7lmhl"]
 [ext_resource type="Script" uid="uid://bxk0c03v7oec7" path="res://player_pickup.gd" id="40_331ug"]
+[ext_resource type="AudioStream" uid="uid://clm4qlointu2u" path="res://Audio/SFXs/Player/Player Taser.wav" id="41_ibah8"]
+[ext_resource type="AudioStream" uid="uid://d0xr5m68mqv26" path="res://Audio/SFXs/Player/Player Equip Mask.wav" id="42_3iwfv"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7hik5"]
 random_pitch = 1.2599211
@@ -177,6 +179,12 @@ radius = 24.75505
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 99.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qwsg1"]
+random_pitch = 1.0582398
+random_volume_offset_db = 2.18
+streams_count = 1
+stream_0/stream = ExtResource("2_7lmhl")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_pgbbb"]
 radius = 126.32102
 
@@ -185,7 +193,6 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_7ahtn")
 sfx_player_footstep = SubResource("AudioStreamRandomizer_7hik5")
-sfx_player_dash = ExtResource("3_dx0e4")
 visibility_component = NodePath("VisibilityComponent")
 health_component = NodePath("HealthComponent")
 faction = 1
@@ -224,8 +231,11 @@ script = ExtResource("23_7lmhl")
 metadata/_custom_type_script = "uid://cdo28580vtf37"
 
 [node name="PlayerDashSFX" type="AudioStreamPlayer2D" parent="." unique_id=436801329]
+stream = ExtResource("3_dx0e4")
+bus = &"SFXS Bus"
 
 [node name="PlayerFootstepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1380688733]
+stream = SubResource("AudioStreamRandomizer_qwsg1")
 volume_db = -12.0
 bus = &"SFXS Bus"
 
@@ -244,6 +254,14 @@ script = ExtResource("40_331ug")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=804538189]
 shape = SubResource("CircleShape2D_pgbbb")
+
+[node name="PlayerAttackSFX" type="AudioStreamPlayer2D" parent="." unique_id=1828339937]
+stream = ExtResource("41_ibah8")
+bus = &"SFXS Bus"
+
+[node name="PlayerSwitchCostumeSFX" type="AudioStreamPlayer2D" parent="." unique_id=502540808]
+stream = ExtResource("42_3iwfv")
+bus = &"SFXS Bus"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="area_entered" from="AnimatedSprite2D/HurtArea2D" to="." method="_on_hurt_area_2d_area_entered"]
