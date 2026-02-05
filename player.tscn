@@ -39,8 +39,9 @@
 [ext_resource type="Texture2D" uid="uid://bsr6kp0qfg4tf" path="res://Art/Player/Player Cowboy/Walk/Player Diguised as Cowboy Walk6.png" id="21_b4uyv"]
 [ext_resource type="PackedScene" uid="uid://dawcnkae0m2rf" path="res://weapon.tscn" id="22_7ahtn"]
 [ext_resource type="Script" uid="uid://cdo28580vtf37" path="res://components/visibility_component.gd" id="23_7lmhl"]
-[ext_resource type="AudioStream" uid="uid://clm4qlointu2u" path="res://Audio/SFXs/Player/Player Taser.wav" id="40_331ug"]
-[ext_resource type="AudioStream" uid="uid://d0xr5m68mqv26" path="res://Audio/SFXs/Player/Player Equip Mask.wav" id="41_ny14h"]
+[ext_resource type="Script" uid="uid://bxk0c03v7oec7" path="res://player_pickup.gd" id="40_331ug"]
+[ext_resource type="AudioStream" uid="uid://clm4qlointu2u" path="res://Audio/SFXs/Player/Player Taser.wav" id="41_ibah8"]
+[ext_resource type="AudioStream" uid="uid://d0xr5m68mqv26" path="res://Audio/SFXs/Player/Player Equip Mask.wav" id="42_3iwfv"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7hik5"]
 random_pitch = 1.2599211
@@ -178,11 +179,14 @@ radius = 24.75505
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 99.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ny14h"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qwsg1"]
 random_pitch = 1.0582398
 random_volume_offset_db = 2.18
 streams_count = 1
 stream_0/stream = ExtResource("2_7lmhl")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pgbbb"]
+radius = 126.32102
 
 [node name="Player" type="CharacterBody2D" unique_id=1031007451 node_paths=PackedStringArray("visibility_component", "health_component") groups=["player"]]
 collision_mask = 3
@@ -197,9 +201,10 @@ metadata/_custom_type_script = "uid://bsmjmjcwf80si"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1009284766]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_331ug")
-animation = &"idle"
+animation = &"cowboyDisguise"
 
 [node name="HurtArea2D" type="Area2D" parent="AnimatedSprite2D" unique_id=2127694886]
+unique_name_in_owner = true
 script = ExtResource("18_5tmop")
 metadata/_custom_type_script = "uid://bs0srdqadorqt"
 
@@ -230,16 +235,9 @@ stream = ExtResource("3_dx0e4")
 bus = &"SFXS Bus"
 
 [node name="PlayerFootstepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1380688733]
-stream = SubResource("AudioStreamRandomizer_ny14h")
+stream = SubResource("AudioStreamRandomizer_qwsg1")
 volume_db = -12.0
 bus = &"SFXS Bus"
-
-[node name="PlayerAttackSFX" type="AudioStreamPlayer2D" parent="." unique_id=557898345]
-stream = ExtResource("40_331ug")
-bus = &"SFXS Bus"
-
-[node name="PlayerSwitchCostumeSFX" type="AudioStreamPlayer2D" parent="." unique_id=392632898]
-stream = ExtResource("41_ny14h")
 
 [node name="DashTimer" type="Timer" parent="." unique_id=555058405]
 wait_time = 0.4
@@ -249,5 +247,23 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="Area2D" type="Area2D" parent="." unique_id=775364574]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("40_331ug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=804538189]
+shape = SubResource("CircleShape2D_pgbbb")
+
+[node name="PlayerAttackSFX" type="AudioStreamPlayer2D" parent="." unique_id=1828339937]
+stream = ExtResource("41_ibah8")
+bus = &"SFXS Bus"
+
+[node name="PlayerSwitchCostumeSFX" type="AudioStreamPlayer2D" parent="." unique_id=502540808]
+stream = ExtResource("42_3iwfv")
+bus = &"SFXS Bus"
+
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="area_entered" from="AnimatedSprite2D/HurtArea2D" to="." method="_on_hurt_area_2d_area_entered"]
+[connection signal="area_exited" from="AnimatedSprite2D/HurtArea2D" to="." method="_on_hurt_area_2d_area_exited"]
 [connection signal="timeout" from="AttackRechargeTimer" to="." method="_on_attack_recharge_timer_timeout"]

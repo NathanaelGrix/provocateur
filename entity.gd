@@ -68,10 +68,6 @@ func update_aggro_target() -> void:
 		# If there are no targets visible, reset aggro
 		#for fac in aggro_against_factions.keys():
 			#aggro_against_factions[fac] = false
-			
-	if aggro_target and aggro_target.room_id != room_id:
-		exit_combat()
-		return
 
 
 func _on_aggro_timeout() -> void:

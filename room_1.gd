@@ -16,7 +16,6 @@ func  _ready():
 	darkness2.modulate.a = 1.0
 	
 	await  get_tree().process_frame
-	assign_key_to_random_enemy()
 	
 
 func _on_area_2d_body_entered(body):
@@ -42,22 +41,3 @@ func hide_room():
 
 		tween.tween_property(darkness, "modulate:a", 0.6, 0.4)
 		tween.parallel().tween_property(darkness2, "modulate:a", 0.6, 0.4)
-
-	
-	
-func assign_key_to_random_enemy():
-	var all_enemies := get_tree().get_nodes_in_group("enemies")
-
-	var room_enemies: Array[Enemy] = []
-
-	for enemy in all_enemies:
-		if enemy.room_id == room_id:
-			room_enemies.append(enemy)
-
-	if room_enemies.is_empty():
-		return
-
-	var chosen_enemy: Enemy = room_enemies.pick_random()
-	chosen_enemy.drop_key_on_death = keycard_scene
-	
-	print("Key assigned to:", chosen_enemy.name)

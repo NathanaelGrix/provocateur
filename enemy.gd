@@ -23,7 +23,6 @@ enum State{
 func _ready() -> void:
 	super()
 	add_to_group("enemies")
-	print("Enemy ready:", name, "room:", room_id)
 	await get_tree().physics_frame
 	change_state(State.MOVING)
 	
@@ -106,6 +105,8 @@ func change_state(local_state: State):
 			aggro_target = null
 			$AttackCooldownTimer.paused = true
 			health_component.visible = false
+			remove_child(%CollisionShape2D)
+			%PickupBox.set_deferred("disabled",false)
 		State.IDLE:
 			%AnimatedSprite2D.animation = enemy_details.idle_animation
 			%AnimatedSprite2D.play()

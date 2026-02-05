@@ -38,6 +38,7 @@ window/stretch/scale=2.0
 
 player=""
 navigation_polygon_source_geometry_group=""
+pickup_area=""
 
 [input]
 

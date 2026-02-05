@@ -36,8 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://crdnqncfo7gu7" path="res://Art/Number 2.png" id="28_vssm6"]
 [ext_resource type="Texture2D" uid="uid://dqhgx5ub25onf" path="res://Art/Number 3.png" id="29_gh71b"]
 [ext_resource type="Resource" uid="uid://dfql542ls4c5e" path="res://cowboy_enemy_details.tres" id="35_dx6cf"]
-[ext_resource type="Resource" uid="uid://8aedimg1cpj4" path="res://alien_enemy_details.tres" id="36_i43pf"]
-[ext_resource type="AudioStream" uid="uid://dtsowgrmbq2pt" path="res://Audio/SFXs/Ambience/AMB Bar.wav" id="37_gvfwj"]
+[ext_resource type="Resource" uid="uid://cgs8tqqotodkn" path="res://alien_enemy_details.tres" id="36_i43pf"]
+[ext_resource type="AudioStream" uid="uid://dtsowgrmbq2pt" path="res://Audio/SFXs/Ambience/AMB Bar.wav" id="38_gvfwj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gq61q"]
 vertices = PackedVector2Array(4056, 2931, 4827.953, 3177.9766, 2475, 3175.0078, 3140, 2931, 4813.039, -241.03125, 4056, 2255, 4008, 1843, 4008, 1167, 3320, 675, 3320, 63, 2452, 675, 3092, 1167, 2475, 1113.8984, 1732.0313, 1043.8906, 1736.9609, -250.96094, 2452, 63, 3140, 2255, 3092, 1843)
@@ -1946,33 +1946,33 @@ keycard_scene = ExtResource("12_1ygvo")
 position = Vector2(-32, -139)
 navigation_polygon = SubResource("NavigationPolygon_gq61q")
 
-[node name="Cowboy" parent="TileMap/Room_1" unique_id=918026956 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(4411, 1350)
+[node name="Cowboy" parent="TileMap/Room_1" unique_id=2086308516 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(4443, 1489)
 enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
 room_controller = NodePath("../../../RoomController")
-room_id = "room_1"
+room_id = ""
 
-[node name="Cowboy2" parent="TileMap/Room_1" unique_id=1022823390 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(2785, 1867)
+[node name="Cowboy2" parent="TileMap/Room_1" unique_id=918026956 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(2817, 2006)
 enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
 drop_key_on_death = ExtResource("12_1ygvo")
 room_controller = NodePath("../../../RoomController")
-room_id = "room_1"
+room_id = ""
 
-[node name="Cowboy3" parent="TileMap/Room_1" unique_id=955989243 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(4431, 2554)
+[node name="Cowboy3" parent="TileMap/Room_1" unique_id=791769093 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(4463, 2693)
 enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
+room_controller = NodePath("")
 room_id = "room_1"
 
-[node name="Alien" parent="TileMap/Room_1" unique_id=1440351280 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(3967, 112)
+[node name="Alien" parent="TileMap/Room_1" unique_id=537802831 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(3999, 251)
 enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
+room_controller = NodePath("")
 room_id = "room_1"
 faction = 3
 
@@ -1985,8 +1985,8 @@ navigation_polygon = SubResource("NavigationPolygon_u36aa")
 position = Vector2(-209, 1885)
 enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_2"
+room_controller = NodePath("")
+room_id = ""
 
 [node name="Alien" parent="TileMap/Room_2" unique_id=1524853402 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(-1965, 2487)
@@ -1994,23 +1994,23 @@ enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
 drop_key_on_death = ExtResource("12_1ygvo")
 room_controller = NodePath("../../../RoomController")
-room_id = "room_2"
+room_id = ""
 faction = 3
 
 [node name="Alien2" parent="TileMap/Room_2" unique_id=488937000 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(1883, 2507)
 enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_2"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
 [node name="Alien3" parent="TileMap/Room_2" unique_id=604530046 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(-380, 3169)
 enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_2"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
 [node name="Room_3" parent="TileMap" unique_id=860808104 instance=ExtResource("15_i43pf")]
@@ -2024,44 +2024,44 @@ enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
 drop_key_on_death = ExtResource("12_1ygvo")
 room_controller = NodePath("../../../RoomController")
-room_id = "room_3"
+room_id = ""
 
 [node name="Cowboy3" parent="TileMap/Room_3" unique_id=1128556650 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(-2786, 1074)
 enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_3"
+room_controller = NodePath("")
+room_id = ""
 
 [node name="Cowboy4" parent="TileMap/Room_3" unique_id=1232975290 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(-1381, -1244)
 enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_3"
+room_controller = NodePath("")
+room_id = ""
 
 [node name="Alien" parent="TileMap/Room_3" unique_id=271970337 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(-2239, -2689)
 enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_3"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
 [node name="Alien2" parent="TileMap/Room_3" unique_id=1554979511 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(-3373, -1068)
 enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_3"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
 [node name="Alien3" parent="TileMap/Room_3" unique_id=1178085154 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
 position = Vector2(-2209, -1445)
 enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_3"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
 [node name="Room_4" parent="TileMap" unique_id=494105408 instance=ExtResource("16_gvfwj")]
@@ -2070,83 +2070,94 @@ faction = 3
 navigation_polygon = SubResource("NavigationPolygon_dx6cf")
 
 [node name="Cowboy1" parent="TileMap/Room_4" unique_id=1862090460 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(4414, -3434)
+position = Vector2(4427, -1291)
 enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
 drop_key_on_death = ExtResource("12_1ygvo")
 room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_id = ""
 
-[node name="Cowboy2" parent="TileMap/Room_4" unique_id=1039378344 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(3608, -3572)
+[node name="Cowboy2" parent="TileMap/Room_4" unique_id=715495562 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(3692, -2214)
+enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 
-[node name="Cowboy3" parent="TileMap/Room_4" unique_id=48314856 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(4318, -2292)
+[node name="Cowboy3" parent="TileMap/Room_4" unique_id=1938611009 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(4534, -3413)
+enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 
-[node name="Cowboy4" parent="TileMap/Room_4" unique_id=1984294839 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(3171, -2233)
+[node name="Cowboy4" parent="TileMap/Room_4" unique_id=1123731678 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(-131, -3395)
+enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 
-[node name="Cowboy5" parent="TileMap/Room_4" unique_id=510843182 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(2416, -3543)
+[node name="Cowboy5" parent="TileMap/Room_4" unique_id=1300885874 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(1758, -2393)
+enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 
-[node name="Cowboy6" parent="TileMap/Room_4" unique_id=1139537031 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(2409, -2699)
+[node name="Cowboy6" parent="TileMap/Room_4" unique_id=18066582 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(2099, -1354)
+enemy_details = ExtResource("35_dx6cf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 
-[node name="Alien1" parent="TileMap/Room_4" unique_id=1822584611 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(-381, -3528)
+[node name="Alien1" parent="TileMap/Room_4" unique_id=795114801 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(2573, -1990)
+enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
-[node name="Alien2" parent="TileMap/Room_4" unique_id=1207356321 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(463, -3521)
+[node name="Alien2" parent="TileMap/Room_4" unique_id=765519001 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(334, -1049)
+enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
-[node name="Alien3" parent="TileMap/Room_4" unique_id=223048364 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(-373, -2751)
+[node name="Alien3" parent="TileMap/Room_4" unique_id=479343885 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(-60, -2401)
+enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
-[node name="Alien4" parent="TileMap/Room_4" unique_id=1512558516 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(-388, -1870)
+[node name="Alien4" parent="TileMap/Room_4" unique_id=1359391670 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(3504, -879)
+enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
-[node name="Alien5" parent="TileMap/Room_4" unique_id=974440426 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(63, -1078)
+[node name="Alien5" parent="TileMap/Room_4" unique_id=1891837469 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(3092, -3503)
+enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
-[node name="Alien6" parent="TileMap/Room_4" unique_id=413725978 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
-position = Vector2(2002, -1818)
+[node name="Alien6" parent="TileMap/Room_4" unique_id=215000407 node_paths=PackedStringArray("navigation_region") instance=ExtResource("9_bu3ac")]
+position = Vector2(1364, -3574)
+enemy_details = ExtResource("36_i43pf")
 navigation_region = NodePath("../NavigationRegion2D")
-room_controller = NodePath("../../../RoomController")
-room_id = "room_4"
+room_controller = NodePath("")
+room_id = ""
 faction = 3
 
 [node name="Walls" type="TileMapLayer" parent="TileMap" unique_id=663622871 groups=["navigation_polygon_source_geometry_group"]]
@@ -2169,6 +2180,10 @@ texture = ExtResource("28_vssm6")
 [node name="Number3" type="Sprite2D" parent="TileMap" unique_id=983899136]
 position = Vector2(-782, -145)
 texture = ExtResource("29_gh71b")
+
+[node name="Key" parent="." unique_id=1197041074 instance=ExtResource("12_1ygvo")]
+position = Vector2(4235, 595)
+controller = NodePath("../RoomController")
 
 [node name="Chalkboard" parent="." unique_id=997523242 instance=ExtResource("15_3qa0k")]
 position = Vector2(353, -410)
@@ -2198,31 +2213,31 @@ position = Vector2(1294, -715)
 [node name="player" parent="." unique_id=1495105893 instance=ExtResource("1_4qc02")]
 position = Vector2(352, 230)
 
-[node name="Room Ambience" type="AudioStreamPlayer2D" parent="." unique_id=512180882]
-position = Vector2(3657, 1218)
-stream = ExtResource("37_gvfwj")
-autoplay = true
-bus = &"SFXS Bus"
-
-[node name="Room Ambience2" type="AudioStreamPlayer2D" parent="." unique_id=51523890]
-position = Vector2(-34, 2455)
-stream = ExtResource("37_gvfwj")
-autoplay = true
-bus = &"SFXS Bus"
-
-[node name="Room Ambience3" type="AudioStreamPlayer2D" parent="." unique_id=1968755627]
-position = Vector2(-2826, -785)
-stream = ExtResource("37_gvfwj")
-autoplay = true
-bus = &"SFXS Bus"
-
-[node name="Room Ambience4" type="AudioStreamPlayer2D" parent="." unique_id=1596774524]
-position = Vector2(1806, -2185)
-stream = ExtResource("37_gvfwj")
-autoplay = true
-bus = &"SFXS Bus"
-
 [node name="AudioStreamPlayer2D_Ambience" type="AudioStreamPlayer" parent="." unique_id=1753247641]
 stream = ExtResource("17_pphbs")
+autoplay = true
+bus = &"SFXS Bus"
+
+[node name="Room Ambience" type="AudioStreamPlayer2D" parent="." unique_id=1168075314]
+position = Vector2(3707, 1289)
+stream = ExtResource("38_gvfwj")
+autoplay = true
+bus = &"SFXS Bus"
+
+[node name="Room Ambience2" type="AudioStreamPlayer2D" parent="." unique_id=1032092582]
+position = Vector2(-81, 2471)
+stream = ExtResource("38_gvfwj")
+autoplay = true
+bus = &"SFXS Bus"
+
+[node name="Room Ambience3" type="AudioStreamPlayer2D" parent="." unique_id=541614572]
+position = Vector2(-2821, -770)
+stream = ExtResource("38_gvfwj")
+autoplay = true
+bus = &"SFXS Bus"
+
+[node name="Room Ambience4" type="AudioStreamPlayer2D" parent="." unique_id=1707939184]
+position = Vector2(1853, -1952)
+stream = ExtResource("38_gvfwj")
 autoplay = true
 bus = &"SFXS Bus"
