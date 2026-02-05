@@ -39,6 +39,8 @@
 [ext_resource type="Texture2D" uid="uid://bsr6kp0qfg4tf" path="res://Art/Player/Player Cowboy/Walk/Player Diguised as Cowboy Walk6.png" id="21_b4uyv"]
 [ext_resource type="PackedScene" uid="uid://dawcnkae0m2rf" path="res://weapon.tscn" id="22_7ahtn"]
 [ext_resource type="Script" uid="uid://cdo28580vtf37" path="res://components/visibility_component.gd" id="23_7lmhl"]
+[ext_resource type="AudioStream" uid="uid://clm4qlointu2u" path="res://Audio/SFXs/Player/Player Taser.wav" id="40_331ug"]
+[ext_resource type="AudioStream" uid="uid://d0xr5m68mqv26" path="res://Audio/SFXs/Player/Player Equip Mask.wav" id="41_ny14h"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7hik5"]
 random_pitch = 1.2599211
@@ -176,12 +178,17 @@ radius = 24.75505
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 99.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ny14h"]
+random_pitch = 1.0582398
+random_volume_offset_db = 2.18
+streams_count = 1
+stream_0/stream = ExtResource("2_7lmhl")
+
 [node name="Player" type="CharacterBody2D" unique_id=1031007451 node_paths=PackedStringArray("visibility_component", "health_component") groups=["player"]]
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_7ahtn")
 sfx_player_footstep = SubResource("AudioStreamRandomizer_7hik5")
-sfx_player_dash = ExtResource("3_dx0e4")
 visibility_component = NodePath("VisibilityComponent")
 health_component = NodePath("HealthComponent")
 faction = 1
@@ -219,10 +226,20 @@ script = ExtResource("23_7lmhl")
 metadata/_custom_type_script = "uid://cdo28580vtf37"
 
 [node name="PlayerDashSFX" type="AudioStreamPlayer2D" parent="." unique_id=436801329]
+stream = ExtResource("3_dx0e4")
+bus = &"SFXS Bus"
 
 [node name="PlayerFootstepSFX" type="AudioStreamPlayer2D" parent="." unique_id=1380688733]
+stream = SubResource("AudioStreamRandomizer_ny14h")
 volume_db = -12.0
 bus = &"SFXS Bus"
+
+[node name="PlayerAttackSFX" type="AudioStreamPlayer2D" parent="." unique_id=557898345]
+stream = ExtResource("40_331ug")
+bus = &"SFXS Bus"
+
+[node name="PlayerSwitchCostumeSFX" type="AudioStreamPlayer2D" parent="." unique_id=392632898]
+stream = ExtResource("41_ny14h")
 
 [node name="DashTimer" type="Timer" parent="." unique_id=555058405]
 wait_time = 0.4

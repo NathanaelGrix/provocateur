@@ -12,7 +12,8 @@ var dash_direction := Vector2.ZERO
 enum PlayerState {IDLE, MOVE, DASH, COWBOY, ALIEN}
 
 @export var sfx_player_footstep : AudioStream
-@export var sfx_player_dash: AudioStream
+
+
 
 var foot_step_frames : Array = [4]
 
@@ -60,13 +61,15 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("tempTurnAlien"):
 		faction = Faction.ALIEN	
+		$PlayerSwitchCostumeSFX.play()
 	if Input.is_action_just_pressed("tempTurnCowboy"):
 		faction = Faction.COWBOY
+		$PlayerSwitchCostumeSFX.play()
 	if Input.is_action_just_pressed("tempTurnPlayer"):
 		faction = Faction.PLAYER
+		$PlayerSwitchCostumeSFX.play()
 	
 	if Input.is_action_just_pressed("dash") and can_dash:
-		$PlayerDashSFX.stream = sfx_player_dash
 		$PlayerDashSFX.play()
 		start_dash()
 		
@@ -83,6 +86,7 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("attack"):
 		start_attack()
+
 		
 	match state:
 		PlayerState.IDLE:
@@ -150,6 +154,7 @@ func handle_move(direction: Vector2, delta: float) -> void:
 
 func start_attack():
 	if attack_ready:
+		$PlayerAttackSFX.play()
 		is_attacking = true
 		attack_ready = false
 		$weapon.rotation = global_position.angle_to_point(get_global_mouse_position())
@@ -184,7 +189,6 @@ func _on_animated_sprite_2d_frame_changed():
 		return
 
 	if $AnimatedSprite2D.frame in foot_step_frames:
-		$PlayerFootstepSFX.stream = sfx_player_footstep
 		$PlayerFootstepSFX.play()
 
 

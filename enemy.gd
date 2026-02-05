@@ -3,7 +3,6 @@ class_name Enemy extends Entity
 @export var enemy_details: EnemyDetails
 @export var navigation_region: NavigationRegion2D
 @export var drop_key_on_death: PackedScene
-@export var room_id: String
 
 @export var room_controller: NodePath
 
@@ -73,9 +72,25 @@ func _on_attack_off_cooldown() -> void:
 func update_aggro_target() -> void:
 	if state == State.DEAD:
 		return
+		
 	super()
-	$AttackCooldownTimer.start(1)
+	
+	if aggro_target == null:
+		exit_combat()
+	else:
+		$AttackCooldownTimer.start(1)
 
+
+func exit_combat():
+	aggro_target = null
+	$AttackCooldownTimer.stop()
+	
+	for faction in aggro_against_factions.keys():
+		aggro_against_factions[faction] = false
+	
+	change_state(State.MOVING)
+	
+	SignalBus.enemy_exited_combat.emit(self)
 
 func _on_timer_timeout() -> void:
 	next_position = NavigationServer2D.region_get_random_point(navigation_region.get_rid(),%NavigationAgent2D.navigation_layers,false)
